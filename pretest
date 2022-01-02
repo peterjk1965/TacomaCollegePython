@@ -1,0 +1,40 @@
+PRETEST
+
+Which of the following lines of Python code would print out the words "Introduction to Python" on the screen?
+print ("Introduction to Python")
+
+Which Python function is used to get string input from the user?
+input
+
+How do you let Python know to execute multiple statements if the condition of an if statement is true?
+All statements part of the true path are indented the same amount.
+
+When is the code in the else clause of a loop executed?
+only if the loop exits normally
+
+the parameter list is placed in the first line of the function definition, just after the function name.
+
+If you were asked to write a class named Car, which of the following would be the name of the constructor function?
+__init__
+
+Frame's mainloop method?
+keeps the Frame open until the user chooses to close it.
+
+when you attempt to sort a list containing both strings and numbers?
+A syntax error would occur.
+
+What can be said about the output from the following line of code that prints the dictionary, my_dictionary?
+print (my_dictionary)
+There's no guarantee as to what order the key-value pairs will appear in the output.
+
+Which of the following flags opens a shelf file for both reading and writing?
+c
+
+true regarding exception handling?
+statements that may create an exception are put in the try block, statements to execute are put in the except block.
+
+
+Tkinter widgets allows the user to enter text data into the program?
+Entry.
+
+

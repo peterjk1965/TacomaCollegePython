@@ -1,0 +1,316 @@
+Lesson 7
+
+Tinker
+
+The Frame and Canvas Widgets
+
+The first widget we'll look at is the Frame:  called a window
+from tkinter  import *
+
+frame01 = Frame()
+frame01.mainloop()
+
+This code dosnt work but it was to open a blank window
+__________________________________________
+
+Inheritance
+ inheritance is just the ability to take an existing class and add to it.
+
+from tkinter import *
+
+class MyFrame(Frame):
+  def __init__(self):
+     Frame.__init__(self)
+
+# Now create a MyFrame object and call on mainloop
+frame02 = MyFrame()
+frame02.mainloop()
+
+creating a new class called MyFrame with the code class MyFrame.
+to inherit from another class, we put the base class name inside parentheses.
+next line of code starts the definition for the class constructor, __init__.
+
+________________________________________
+
+To get a rectangle onto the Canvas, you need to call on the method, create_rectangle.
+
+the oval. use the method create_oval. 
+
+________________________________________
+
+self.myCanvas.create_rectangle(10, 10, 200, 100, fill="blue")
+self.myCanvas.create_oval(10, 10, 200, 100, fill="white")
+
+This displays a blue-filled rectangle and then a white-filled oval on top of it.
+
+the method to create a line is create_line. 
+
+the line shape has the width and fill options that allow you to choose the line width and color, respectively
+
+there's an option for arrow
+
+to draw a line from the point (1, 1) to the point (200, 200) with an arrowhead at point (1, 1)
+
+self.myCanvas.create_line(1, 1, 200, 200, arrow="first")
+
+create_text method.
+self.myCanvas.create_text(50, 50, text="Hello World")
+
+justify. Possible values for this option include, "left," "center," or "right.
+
+the anchor option. This property determines where the text should be placed with respect to the point you specify.
+By default, the value for this option is "center
+
+the text shape has a font option. To change your font, you need to specify the font name and size in the following format:
+( < Font name > , < size > )
+
+the name of the font must be enclosed in quotes and that the name and the size must be enclosed in parentheses and separated by a comma.
+
+_____________________________________________________
+
+ the following two lines of code use all of these options to create the blue text "Hello World." at location (1, 1) with the anchor in the upper-left corner, a width of 70 pixels, the text centered, and with 16 point Times font:
+
+self.myCanvas.create_text(1, 1, text="Hello World",
+        width=70, fill="blue", anchor="nw",
+        justify="center", font=("Times", 16))
+
+____________________________________________________
+
+there are also methods that allow you to create arcs, polygons, and images.
+
+how to create simple animations with your shapes. Python gives us two ways to do this. One involves pausing our program and the other uses function calls that return a value.
+
+The idea is to draw a shape on the Canvas, have the program pause, and then draw another shape.
+how we're going to pause our program. 
+
+Python includes a module called time that has some handy methods inside it. One such method is sleep.
+pause or sleep for the number of seconds specified inside the parentheses of the method call. 
+sleep(0.5)
+
+to gain access to this method, we'll need to have an import statement at the top of our program.
+
+canvas method, update. When you call this method, Python will go ahead and draw the Canvas as it is specified so far in the program code.
+
+____________________________________________________
+
+write a program that draws a rectangle, pauses one second, and then draws another rectangle in a different location:
+
+from tkinter import *
+from time import *
+
+class MyFrame(Frame):
+  def __init__(self):
+     Frame.__init__(self)
+
+     self.myCanvas = Canvas(width=300, height=200, bg="white")
+     self.myCanvas.grid()
+
+     self.myCanvas.create_rectangle(10, 10, 50, 50)
+     self.myCanvas.update()
+
+     sleep(1)
+
+     self.myCanvas.create_rectangle(20, 20, 60, 60)
+
+frame02 = MyFrame()
+frame02.mainloop()
+
+_________________________________________________________
+how about creating a rectangle on this Canvas in the upper-left corner. Then add rectangles, moving them down and to the right. 
+
+for count in range(10):
+  increment = 10*count
+  self.myCanvas.create_rectangle(10 + increment,
+     10 + increment, 50 + increment, 50 + increment)
+  self.myCanvas.update()
+  sleep(1)
+
+ you end up with 10 rectangles on your Canvas.
+_________________________________________________________
+from tkinter import *
+from time import *
+
+class MyFrame(Frame):
+  def __init__(self):
+     Frame.__init__(self)
+
+     self.myCanvas = Canvas(width=300, height=200, bg="white")
+     self.myCanvas.grid()
+
+     self.myCanvas.create_rectangle(10, 10, 50, 50)
+     self.myCanvas.update()
+
+     sleep(1)
+
+     self.myCanvas.create_rectangle(20, 20, 60, 60)
+
+     for count in range(10):
+      increment = 10 * count
+      self.myCanvas.create_rectangle(10 + increment,
+                                       10 + increment, 50 + increment, 50 + increment)
+      self.myCanvas.update()
+      sleep(1)
+
+frame02 = MyFrame()
+frame02.mainloop()
+
+
+________________________________________________________
+
+to look like only one rectangle is moving across the Canvas.
+if your animation requires the use of each successive shape,
+
+for count in range(10):
+  increment = 10*count
+  self.myCanvas.create_rectangle(10 + increment,
+     10 + increment, 50 + increment, 50 + increment)
+  self.myCanvas.update()
+  sleep(1)
+
+  # Now color over the previous rectangle
+  self.myCanvas.create_rectangle(10 + increment,
+     10 + increment, 50 + increment, 50 + increment,
+     outline="white")
+
+_________________________________________________________
+
+Python allows you to do animation. 
+to move a single shape across the Canvas, 
+we've used the variable my_rect_id to store the rectangle shape
+
+my_rect_id = self.myCanvas.create_rectangle(10, 10, 50, 50)
+self.myCanvas.update()
+
+for count in range(10):
+  increment = 10*count
+  self.myCanvas.coords(my_rect_id,
+     10 + increment, 10 + increment,
+     50 + increment, 50 + increment)
+  self.myCanvas.update()
+  sleep(1)
+
+_________________________________________________________
+
+Lesson 7: FAQs
+
+Here's the program code. Can you tell me what's missing? 
+
+from tkinter import *
+
+class MyFrame(Frame):
+  def __init__(self):
+     Frame.__init__(self)
+
+     self.myCanvas = Canvas(width=150, height=150, bg="red")
+     self.myCanvas.grid()
+
+     self.myCanvas.create_rectangle(10, 10, 50, 50)
+     self.myCanvas.create_text(50, 50, text="Hi there!",
+        anchor="nw")
+
+you forgot to include the code outside the class, at the bottom of your program, to create a MyFrame object and then use this object to call mainloop( ). Just try adding the following to the bottom of your file, and make sure that it is left justified so that it lines up with the "c" in your class statement:
+
+frame02 = MyFrame()
+frame02.mainloop()
+
+
+
+____________________________________________________________
+
+this works, opens white window:
+
+from tkinter import *
+
+from time import *
+
+class MyFrame(Frame):
+  def __init__(self):
+     Frame.__init__(self)
+
+     self.myCanvas = Canvas(width=300, height=200, bg="white")
+     self.myCanvas.grid()
+
+     self.myCanvas.create_rectangle(10, 10, 50, 50)
+     self.myCanvas.update()
+
+     sleep(1)
+
+     self.myCanvas.create_rectangle(20, 20, 60, 60)
+
+frame02 = MyFrame()
+frame02.mainloop()
+
+____________________________________________________________
+
+In order to have your program pause during execution, you use which of the following methods from the time module?
+sleep()
+
+Which of the following methods registers a widget with the layout manager so that the widget is displayed on the Frame?
+grid( )
+
+What parameters are required to make an oval using the create_oval method?
+The x and y locations of the upper-left and lower-right corners of the oval's bounding box.
+
+Which of the following methods changes the location of a shape on the Canvas?
+coords( )
+
+Which of the following values is used with the create_text method's anchor option so that the point specified represents the lower-right corner of the text placement?
+se
+
+____________________________________________________________
+
+Supplementary material
+
+http://effbot.org/tkinterbook/canvas.htm
+
+https://infohost.nmt.edu/tcc/help/pubs/tkinter.pdf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

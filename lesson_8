@@ -1,0 +1,338 @@
+Lesson 8: Python Data Structures 1: Lists and Tuples
+
+
+
+List Structure Basics
+ basically an ordered sequence of values.
+
+Python list is similar in nature to an array in other languages.
+
+you can get to an individual item, or element, in the list is through the list's name and a unique number specifying the location of the element inside the list
+
+lists use square brackets ( [ ] )
+
+comma separates each of the values 
+
+each value inside quotes is because these are string values. If these were numeric values, the quotes wouldn't be required.
+
+days_of_week = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+
+
+to access the members inside the square brackets:
+print (days_of_week [2] )
+
+
+use loops to call upon every element in a list
+hard-coded value of 7 in my loop. 
+value is the number of elements in my list, or its length
+
+for count in range(7):
+  print (days_of_week [count] )
+
+I could have written the first line of my loop like this:
+for count in range(len(days_of_week)):
+
+to change one of the values:
+ use the list variable name and the element number, followed by an equal sign, and then the new value
+ we changed the value in position 0, which used to be 'Sun', to 'Sunday'.
+days_of_week [0] = 'Sunday'
+
+if I want to print all of the values in my list 
+print (days_of_week)
+
+
+we discussed about using slicing to get just a part of a string value
+same concept applies here to our list variables
+to print only the values 'Tue', 'Wed', and 'Thu'
+print (days_of_week [2:5] )
+
+you aren't required to store the same data type inside each element.
+ if you want to store a name, followed by an age, and then a shoe size, you could.
+child1 = ['Pat', 5, 6.5]
+
+This is called nested lists. Now I can do something like this:
+child1 = ['Pat', 5, 6.5] 
+family = [child1] 
+print (family [0] [1] )
+
+5
+
+The print statement says to go to the family variable
+It then shows [0] which says to access element zero, which itself is a list. 
+ [1] This part says to grab the value at element one in that list, which is the age, 5.
+
+
+_________________________________________
+Additional List Features
+
+ I have the ability to add new elements to my list whenever I want.
+ I can grow my list at any point in time, this means that I can actually create a list that is initially empty.
+
+my_list = [ ]
+
+Now we can add elements to this list anytime we want. And when we do, we'll use the append method.
+my_list.append(10)
+my_list.append('ten')
+print(my_list)
+
+[10, 'ten']
+You'll see that 10 is placed at index 0 and 'ten' is at index 1
+
+can also be accomplished with the method, extend. 
+the following adds the values 20 and 'twenty':
+my_list.extend( [20, 'twenty'] )
+
+my_list = [ ]
+my_list.append(10)
+my_list.append('ten')
+my_list.extend( [20, 'twenty'] )
+print(my_list)
+
+[10, 'ten', 20, 'twenty']
+
+there's always more than one way to do the same thing with Python.
+just the plus sign, +.\
+
+my_list = my_list + [30, 'thirty']
+
+my_list = [ ]
+my_list.append(10)
+my_list.append('ten')
+my_list.extend( [20, 'twenty'] )
+my_list = my_list + [30, 'thirty']
+print(my_list)
+
+[10, 'ten', 20, 'twenty', 30, 'thirty']
+
+You can also insert an item at a specific index in the list. done with the insert method.
+you provide the index where you want the value to be stored
+to insert the value 'hi there!' at location 3:
+Python not only makes the list bigger in size, but it also shifts all of the elements to the right by one
+my_list.insert(3, 'hi there!')
+
+my_list = [ ]
+my_list.append(10)
+my_list.append('ten')
+my_list.extend( [20, 'twenty'] )
+my_list = my_list + [30, 'thirty']
+my_list.insert(3, 'hi there!')
+print(my_list)
+
+[10, 'ten', 20, 'hi there!', 'twenty', 30, 'thirty']
+
+there a way to remove them through the remove method.
+ you place the value you want removed inside the parentheses.
+a call to remove is going to change the length of the list and shift the values back to the left.
+only the first item with the value you specify is removed.
+my_list.remove('hi there!')
+
+my_list = [ ]
+my_list.append(10)
+my_list.append('ten')
+my_list.extend( [20, 'twenty'] )
+my_list = my_list + [30, 'thirty']
+my_list.insert(3, 'hi there!')
+my_list.remove('hi there!')
+print(my_list)
+
+[10, 'ten', 20, 'twenty', 30, 'thirty']
+
+
+ to find out the biggest or smallest item in your list.
+this same method works on list if it's storing all strings. However a list containing both string and numeric values, will not work. 
+use the methods, max and min,
+my_numbers = [16, 8, 15, 42, 23, 4]
+print ( max(my_numbers))
+
+42
+
+
+the sort method.
+sort the values inside the list in increasing order.
+ there are no arguments required for sorting
+my_numbers.sort( )
+
+my_numbers = [16, 8, 15, 42, 23, 4]
+my_numbers.sort( )
+print(my_numbers)
+
+[4, 8, 15, 16, 23, 42]
+
+
+reverse. As its name implies, this method reverses the order of the elements in the list.
+my_list.reverse( )
+
+my_numbers = [16, 8, 15, 42, 23, 4]
+my_numbers.sort( )
+my_numbers.reverse( )
+
+[42, 23, 16, 15, 8, 4]
+
+
+_____________________________________________________________
+Tuples and Graphics
+
+difference between lists and tuples?
+	the syntax for creating them is different
+		a list encloses the values in square brackets
+		tuple encloses its values in parentheses
+
+
+here's how you'd create the days_of_week structure as a tuple:
+days_of_week = ('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat')
+
+tuples are immutable. 
+
+days_of_week [0] = 'Sunday'
+
+days_of_week [0] = 'Sunday'
+TypeError: 'tuple' object does not support item assignment
+
+because a tuple is immutable, it's stored more efficiently in memory
+programs that use tuples are going to run quicker than those that use lists
+many Python modules that require you to either pass a tuple as an argument or receive a tuple back from a function call
+
+self.myCanvas.create_text(1, 1, text="Hello World",
+    width=70, fill="blue", anchor="nw",
+    justify="center", font=("Times", 16)) <<<tuple example
+
+
+if you had wanted to create multiple text components
+each with the same font
+ create the tuple variable first,
+then use it each time you made a new text component.
+my_font = ("Times", 16) <<<tuple
+
+self.myCanvas.create_text(50, 50, text="First",
+  font=my_font)
+self.myCanvas.create_text(80, 80, text="Second",
+  font=my_font)
+
+
+ find_enclosed
+To use this function, you need to pass it the coordinates for a bounding box
+
+a Canvas that contains three rectangles, one on top of the other with a little space in between
+
+from tkinter import *
+
+class MyFrame(Frame):
+  def __init__(self):
+     Frame.__init__(self)
+
+     self.myCanvas = Canvas(width=150, height=150, bg="white")
+     self.myCanvas.grid()
+
+     self.myCanvas.create_rectangle(10, 10, 20, 20, fill="red")
+     self.myCanvas.create_rectangle(10, 30, 20, 40, fill="yellow")
+     self.myCanvas.create_rectangle(10, 50, 20, 60, fill="blue")
+
+     print ("Finds all shapes")
+     print (self.myCanvas.find_enclosed(0, 0, 30, 70))
+
+     print ("Finds middle shape")
+     print (self.myCanvas.find_enclosed(0, 25, 30, 45))
+
+     print ("Finds no shapes")
+     print (self.myCanvas.find_enclosed(0, 0, 1, 1) )
+
+frame02 = MyFrame()
+frame02.mainloop()
+
+______________________________________________________
+
+FAQ
+child1 = ['Pat', 5, 6.5]
+family = [child1]
+
+Is there a way to do this all in one step?
+
+family = [['Pat', 5, 6.5]]
+
+______________________________________________________
+
+Write a program that will compute the average of a series of numbers entered by the user. 
+
+# Introduction to Python Programming
+# Lesson 08 Assignment
+# Sample Solution
+
+# Initialize variables, note the list needs to be
+#   declared this way
+number_list = []
+sum = 0.0
+
+user_number = eval(input("Please enter a number (-999 quits): "))
+
+# Loop until the user is ready to quit
+while (user_number != -999):
+    number_list.append(user_number)
+    sum = sum + user_number
+    user_number = eval(input("Please enter a number (-999 quits): "))
+
+# Make sure the user entered something
+if (len(number_list) != 0):
+    # Compute average
+    average = sum / len(number_list)
+
+    # Do output
+    print ("Using the numbers:")
+
+    for i in range(len(number_list)):
+        # Note the end = " " at the end will keep the output on
+        #   the same line
+        print (number_list[i], end = " ")
+
+    # Note the \n at the start of this line is needed because
+    #   the previous print statement ended with a comma.  This
+    #   \n will move the cursor to the next line
+    print ("\nThe average is:", average)
+else:
+    print ("No values were entered")
+
+_______________________________________________________________
+
+If you printed the result of a function call that returned a tuple that contains no values, what would the output look like?
+
+my_tuple = ( )
+print(my_tuple)
+
+()
+
+create a list variable named score and store the numeric values 10, 20, and 30?
+
+score = [10, 20, 30]
+
+note:This syntax creates a tuple with these values, but not a list.
+score = (10, 20, 30)
+
+
+What does the following line of code do:
+
+    my_list.insert(2, 3)
+
+It inserts value 3 at index 2 in the list
+
+
+Which of the following groups of code would correctly sort the items in the list my_list in decreasing order?
+
+my_list.sort( )
+my_list.reverse( )
+
+
+
+Which of the following lines of code will print the elements at indices 2, 3, and 4 from the my_list list?
+print (my_list[2:5] )
+
+note:This code would print only the value at location 2.
+print (my_list[2:3] )
+
+
+_______________________________________________________________________
+
+
+https://wiki.python.org/moin/HowTo/Sorting
+
+
+
+

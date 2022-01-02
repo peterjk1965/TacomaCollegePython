@@ -1,0 +1,304 @@
+
+Working With External Data Files
+
+__________________________________
+Opening files
+In Python, when you open the file, you'll use the open( ) method,
+
+The following line of code will open a data file named mydata.txt for output, and then store the file object in a variable named out_file:
+The 'w' is the way you specify that you're writing to this file. Be aware that if you have a file opened in this mode, you won't be able to read from it until the file is closed.
+
+out_file = open('mydata.txt', 'w')
+
+out_file = open('/home/peter/mydata.txt', 'w')
+creates blank file
+
+if you want to be sure of your file's location, you can simply list the full path instead of just a filename in your open statement. For example, if you wanted this file saved on your Desktop, you could with this:
+
+out_file = open('/home/peter/mydata.txt', 'w')
+
+if you already have a file named mydata.txt in that directory, then the contents of that file will be erased. 
+___________________________________
+Writing files
+ two methods that we can use to write the data: write( ) and writelines( ). 
+ write method writes a single string to a file
+Writelines writes a list of strings.
+neither method creates line breaks 
+
+out_file.write('Hello')
+out_file.write('world!')
+
+They'll result in a data file that looks like this:
+Helloworld!
+
+Next, try to put some text in your file with writelines:
+weekends = ['Saturday', 'Sunday']
+out_file.writelines(weekends)
+out_file.writelines(weekends)
+
+This code will produce this text in the data file:
+SaturdaySundaySaturdaySunday
+
+The lack of line breaks can get a little frustrating. But, this is easily fixed 
+out_file = open('/home/peter/mydata.txt', 'w')
+
+out_file.write('Hello\n')
+out_file.write('world')
+
+Hello
+world
+
+to force the data to be written immediately, 
+out_file.flush( )
+
+__________________________________
+to close the file
+
+out_file.close( )
+
+__________________________________
+to read data from a file
+
+this code opens the file used in the previous examples:
+
+in_file = open('/home/peter/mydata.txt', 'r')
+
+
+Once the file is opened, there are three methods you can use to read from a file: read( ), readline( ), readlines( ).
+
+the first line of code will read in, at the most, 1 byte of data from the file and store the result in a variable named first. The second line of code will read in an entire line and store it in a variable named second:
+
+first = in_file.read( 1 )
+second = in_file.read( )
+
+The results of my two lines of read code would result in "H" being stored in first and "elloGoodbye" stored in second.
+
+readline will read an entire line of data from a file. Similar to read, readline also allows you to specify a maximum number of bytes. 
+read and readline provide the exact same functionality. use read to read a certain number of characters and 
+readline to get an entire line from a file
+
+readlines gives you the ability to provide a maximum number of bytes to be read. However, if you don't provide a number of bytes, it'll read to the end of the file.
+
+
+__________________________________
+ close your file with the following close method:
+
+in_file.close( )
+
+
+__________________________________
+append
+
+to keep all of the file's information intact before writing the new information.
+ open that same data file we were using before. But this time, it'll keep all of the existing data and add in the new data at the end of the file:
+the new output will be added to the end of the file, a line break isn't included.
+
+out_file = open('/home/peter/mydata.txt', 'a')
+
+use the newline character to move a newly added string to the next line
+out_file.write('\nGoodbye')
+
+out_file = open('/home/peter/mydata.txt', 'a')
+out_file.write('\nGoodbye')
+
+___________________________________
+If you attempt to open your file with 'r+' and that file doesn't exist, then Python will generate an IOError exception, and your program will stop.
+if you open a nonexistent file with 'w+', then Python will simply create one for you
+
+You can always find out where you are in your file with the tell( ) method. 
+
+out_file = open('/home/peter/mydata.txt', 'a')
+out_file.write('\nGoodbye')
+
+print (out_file.tell())
+
+35
+
+This shows that after opening the file and reading the character of text, the file is located at position 35
+
+ when you read in an entire line of text, the newline character is also read in
+
+consider the results of reopening the file, reading an entire line of text, and then printing the file position:
+
+in_file = open('/home/peter/mydata.txt', 'r+')
+print (in_file.readline())
+Hello
+
+
+print (in_file.tell())
+6
+
+________________________________
+seek( ) method.
+if there's a way to determine where you're located in a file, there's also a way to actually move this location with the seek( ) method.
+
+you must provide where in the file you want to move by specifying a number that represents the number of bytes from the beginning of the file
+
+in_file = open('/home/peter/mydata.txt', 'r+')
+print (in_file.readline())
+
+in_file.seek(0)
+
+print (in_file.readline())
+
+
+Hello
+
+Hello
+
+________________________________
+when you're writing to a file that already has data in it, you're going to be overwriting the characters
+
+Consider this example, which opens the data file, reads the first line, moves back to the beginning of the file, and writes some text
+
+in_file = open('/home/peter/mydata.txt', 'r+')
+print (in_file.readline())
+
+in_file.seek(0)
+
+in_file.write('Hi!')
+
+in_file.seek(0)
+
+print (in_file.readline())
+
+
+Hi!lo
+
+Hi!lo
+
+
+_______________________________
+Pickle and Shelve
+I want to show you how to work with a database-like file.
+
+pickling is a handy way of converting your data in12to bytes and cramming them into an external data file
+
+Pickle
+converts an object to a stream of bytes.
+two different ways to pickle an object, depending on where you want the result to be stored
+need to have an import statement to import pickle.
+use dumps( ) to store the result in a string. 
+dump( ), stores the result in a file. 
+
+
+following example that pickles a list of letters and stores the result in a string variable, pickled_letters:
+
+import pickle
+letters = ['a', 'b', 'c'] 
+pickled_letters = pickle.dumps(letters)
+
+
+if you want to send the list above to a data file named, data.txt, you'd need to do this:
+
+import pickle
+outfile = open('data.txt', 'wb')
+letters = ['a', 'b', 'c'] 
+pickle.dump(letters, outfile)
+outfile.close( )
+
+
+To getting the data back to its original form? For that, you'll need either the loads( ) or the load( ) method. the first will unpickle from a string and the second from a file. 
+loads( ) works just like dumps( ).
+you place the variable that's holding the pickled data inside the parentheses.
+
+unpickled_letters = pickle.loads(pickled_letters)
+print (unpickled_letters)
+['a', 'b', 'c']
+
+same idea works then with load( ) and data files, except that you need to remember to first open the data file such that it can read bytes. we'll open the input file for reading bytes with 'rb'
+
+infile = open('data.txt', 'rb')
+file_data = pickle.load(infile)
+infile.close()
+print (file_data)
+['a', 'b', 'c']
+
+
+if there's more than one pickled object in the data file? The answer is that the load( ) method is only going to read these objects one at a time.
+
+
+_________________________________________
+SHELF
+A shelf is a database-like object that can efficiently store pickled values. 
+
+a shelf is an external data file that is used the same way as a Python dictionary. The only difference is that a shelf is required to have its keys be strings and its values must be objects that can be pickled.
+
+you first need to have the import shelf line. Next, you can open the shelf file by using the open( ) method.
+
+ use the 'r' and 'w' flags to open your shelf for only reading or writing, respectively. 
+
+one other flag is 'c', which allows you to open the shelf for reading and writing. This will also have the computer create a new file if it doesn't already exist. 
+
+The last flag is 'n', which will create a new, empty file no matter what.
+
+to open the file, letters.txt, and write two different records: one with the key 'vowels' that contains 'a', 'e', 'i', 'o', and 'u' and a second record that will have the key 'end' that contains the last three letters of the alphabet:
+
+import shelve
+db_file = shelve.open('letters.txt', 'c')
+db_file ['vowels'] = ['a', 'e', 'i', 'o', 'u'] 
+db_file ['end'] = ['x', 'y', 'z'] 
+db_file.close()
+
+ to remove a record from the file, you can use del,
+
+db_file = shelve.open('letters.txt', 'c')
+print ( list( db_file.keys( ) ) )
+['vowels', 'end'] 
+
+
+print( 'vowels' in db_file )
+True
+del db_file ['vowels'] 
+
+
+print( 'vowels' in db_file )
+False
+db_file.close()
+
+
+
+['vowels', 'end']
+True
+False
+
+
+The final shelf method I want to show you is sync( ). Remember how earlier we said that file operations are time consuming. For that reason, these files don't always write the data to the file immediately. If you want this to be done, you can use sync( ) here.
+
+_________________________________________
+FAQ
+nothing appears until I call close. Why?
+the data isn't in the file immediately is because file operations consume a lot of resources.
+when you call close( ), it's going to write out the data immediately because as far as it knows, the program is over and there won't be any more data coming. However, if you want to force the data to be written immediately, you can use the flush( ) method for simple files and the sync( ) method for shelves.
+
+
+__________________________________________
+QUIZ
+
+Which of the following statements regarding data files is accurate?
+By default, when the IDLE prompt is first opened, it will always look for the file in the same directory as the python.exe file.
+
+Which method is used to pickle an object and send the result to a data file?
+dump()
+
+If you want to open your data file and automatically add data to the end of the file, which flag should you use in the open statement?
+a
+
+What is the purpose of the seek method?
+The seek method allows you to move to any position inside a data file.
+
+Which of the following methods forces Python to write the data out to a database file immediately?
+sync( ).
+
+
+___________________________________________
+
+https://docs.python.org/3/library/pickle.html
+
+
+
+
+
+
+
+

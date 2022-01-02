@@ -1,0 +1,281 @@
+chapter 9
+
+Data Structures
+
+ key. One is associated with each record in a dictionary.
+We'll often talk about each entry as a key-value pair
+other languages call these structures hashes or associative arrays.
+
+dictionaries always work with curly braces { }. 
+
+my_dictionary = { }
+
+dictionaries require that the item have a key associated with it, you'll need to specify two things: the key, followed by the value. 
+
+the following code will create a dictionary named days_in_month that contains a single item, 31, whose key is "Jan":
+listed the key first, followed by a colon and then the value
+days_in_month = {'Jan':31}
+
+Python even allows us to mix and match key data types within the same dictionary. That is, I can put one item in the dictionary with a key that's a string and another item in the same dictionary whose key is a number
+when I want to print the number of days in January, I can simply do this:
+
+print (days_in_month ['Jan'] )
+
+adding a single key-value pair is easy; you just separate them with a colon
+
+if you want to start your dictionary with multiple values? To do this, you just need to separate each pair with a comma
+
+days_in_month = {'Jan':31, 'Feb':28, 'Mar':31}
+
+split the pairs up so that there's one per line. splitting the code up like this really increases readability.
+days_in_month = {'Jan':31,
+        'Feb':28,
+        'Mar':31}
+
+You print the dictionary just like you printed your lists and tuples. Simply use the variable name like this:
+
+print (days_in_month)
+
+the dictionary is an unordered list. This means that you aren't guaranteed the output order of your items. 
+days_in_month = {'Jan':31, 'Feb':28, 'Mar':31}
+print (days_in_month)
+{'Jan': 31, 'Mar': 31, 'Feb': 28}
+
+You now know how to create and print a dictionary.
+____________________________________________________________________
+
+More Dictionary Features
+some helpful methods to make it easier to work with dictionaries.
+
+what about printing all of the keys in your dictionary? 
+here's what you'd do to print the keys and values of the days_in_month dictionary from the previous chapter:
+
+days_in_month = {'Jan':31, 'Feb':28, 'Mar':31}
+print (days_in_month.keys())
+
+dict_keys(['Jan', 'Mar', 'Feb']) 
+
+days_in_month = {'Jan':31, 'Feb':28, 'Mar':31}
+print (days_in_month.values())
+
+dict_values([31, 31, 28])
+
+each one returns a list structure, as noted by the square brackets in the output. 
+
+_______________________________
+
+If you attempt to access an item with a key that isn't present in the dictionary, you'll get a KeyError. 
+avoid this by testing to see if a key is in the dictionary before you attempt to access it. 
+
+To test if a key is present with our months example, this would be:
+
+'Feb' in days_in_month
+True
+
+this will return either True or False depending on whether the key is in the dictionary.
+
+Adding Values
+
+_______________________________
+what if you want to add items later? 
+
+our days_in_month example. It only has three months in it.
+
+days_in_month ['Apr'] = 20
+
+
+days_in_month = {'Jan':31, 'Feb':28, 'Mar':31}
+days_in_month ['Apr'] = 20
+print (days_in_month.values())
+
+dict_values([31, 20, 31, 28])
+
+Note that since we're just assigning a value to our dictionary, Python isn't going to give us any output. Instead, it'll just assign the value and then give you the interpreter's prompt back. 
+
+_____________________________
+you can make a change to a value already in the dictionary.
+
+Something else that is common is putting together two different dictionaries. For this, you can use the update( ) method. The following code will create a second dictionary, days_in_month2, and then add the items from this second dictionary to our original:
+
+days_in_month = {'Jan':31, 'Feb':28, 'Mar':31}
+days_in_month ['Apr'] = 20
+days_in_month2 = {'May':31, 'Jun':30, 'Jul':31}
+days_in_month.update(days_in_month2)
+print (days_in_month.values())
+
+dict_values([30, 31, 31, 28, 31, 31, 20])
+
+_____________________________
+
+ if you need to remove something later? For this, you'll need to use the del keyword,
+
+del days_in_month ['Apr']
+
+a KeyError message
+you should first check to see if the key is present using the keyword in before you try to delete anything.
+
+at some p'Feb' in days_in_month
+True
+
+you might want to remove all of the items in your dictionary.there's the clear( ) method. 
+will leave you with an empty dictionary variable, as opposed to using del, which removes a single value
+
+odds = {1:'one', 3:'three', 5:'five'}
+evens = {2:'two', 4:'four', 6:'six'}
+odds.clear()
+print (odds)
+
+{}
+
+The empty curly braces that I received when I printed the contents of my odds dictionary shows that I still have a dictionary named odds. 
+However, there are no key-value pairs inside.
+
+On the other hand, the code that deleted evens removes the entire variable from memory altogether. It's as if I never created evens.
+
+odds = {1:'one', 3:'three', 5:'five'}
+evens = {2:'two', 4:'four', 6:'six'}
+odds.clear()
+print (odds)
+del evens
+print (evens)
+
+    print (evens)
+NameError: name 'evens' is not defined
+
+___________________________________________
+the get( ) method.
+you can access individual items 
+by placing the dictionary name and a set of square brackets with the key inside. The problem is that if the key doesn't exist in the dictionary, the program crashes and you get a KeyError message. 
+
+if the key isn't in the dictionary, you'll get None. Try out this code:
+
+>>>print (days_in_month.get('January'))
+None
+
+ you can provide a default value, instead of None, to be returned if the key isn't present.
+by putting a comma and the default value inside the parentheses.
+
+print (days_in_month.get('January', 'January not present'))
+January not present
+
+___________________________________________________________________
+a few examples of how you might use a dictionary in your programs.
+
+a program that will make use of the dictionary's ability to quickly look up values. 
+It'll also prompt the user for words and keep track of the number of times a word is entered. 
+When we use words.keys(), Python gives us a list with all the keys in it.
+The for loop then stores that key in the current_key variable. The print statement prints this key
+the keys aren't stored in any particular order
+
+words = {}
+value = input("Please enter a word (or -999 to quit): ")
+while (value != '-999'):
+   if value in words: 
+      words [value] = words [value] + 1
+   else:
+       words [value] = 1
+
+   value = input("Please enter a word (or -999 to quit): ")
+
+for current_key in words.keys():
+   print (current_key, '\t', words [current_key] )
+
+999 	 1
+we 	 1
+eet 	 1
+
+
+
+ the keys aren't stored in any particular order. I want to see some kind of order here. And honestly, it's not at all that difficult. 
+what do you think about storing that list, sorting it, and then going through the new list, each time printing the key and using the key to get access to the value in the dictionary?
+
+my_keys = list(words.keys())
+my_keys.sort()
+for current_key in my_keys:
+   print (current_key, '\t', words [current_key] )
+
+
+
+words = {}
+value = input("Please enter a word (or -999 to quit): ")
+while (value != '-999'):
+   if value in words:
+      words [value] = words [value] + 1
+   else:
+       words [value] = 1
+
+   value = input("Please enter a word (or -999 to quit): ")
+
+for current_key in words.keys():
+   print (current_key, '\t', words [current_key] )
+
+   my_keys = list(words.keys())
+   my_keys.sort()
+   for current_key in my_keys:
+       print(current_key, '\t', words[current_key])
+
+
+Please enter a word (or -999 to quit): test
+Please enter a word (or -999 to quit): cat
+Please enter a word (or -999 to quit): house
+Please enter a word (or -999 to quit): -999
+test 	 1
+cat 	 1
+house 	 1
+test 	 1
+cat 	 1
+cat 	 1
+house 	 1
+test 	 1
+house 	 1
+cat 	 1
+house 	 1
+test 	 1
+
+
+
+________________________________________________________________________
+
+Which symbols are associated with the initial creation of a Python dictionary?
+{ }
+
+What term describes the unique value that dictionaries associate each record with?
+Key.
+
+store the numbers 10 and 20 as the keys and the corresponding words ten and twenty as the values?
+numbers = {10:'ten', 20:'twenty'}
+
+Which of the following methods gets only the values stored in the dictionary?
+values( )
+
+Which of the following methods isn't available to a Python dictionary variable?
+sort( )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

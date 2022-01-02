@@ -1,0 +1,529 @@
+Lesson 4: Looping
+while loops and for loops.
+
+The while Loop
+
+ while. And just like you might expect, this code is going to continue to run over and over until the condition becomes false. 
+
+number = 1
+while number <= 5:
+         print (number)
+         number = number + 1
+print ("goodbye!")
+
+
+counter controlled loop
+keep track of the number of times we went through the loop
+
+
+conditional loops. These loops will execute an 
+undetermined number of times until some condition is met.
+
+The for Loop
+the majority of loops that I write are for loops
+for loops are a shorthand version of the while loop
+
+
+for < variable > in < sequence >:
+         < statements >
+
+
+for friend in ['Margot', 'Kathryn', 'Prisila']:
+    invitation = "Hi " + friend + ".  Please come to my party on Saturday!"
+    print(invitation)
+
+Hi Margot.  Please come to my party on Saturday!
+Hi Kathryn.  Please come to my party on Saturday!
+Hi Prisila.  Please come to my party on Saturday!
+
+Process finished with exit code 0
+Running through all the items in a sequence is called traversing the sequence, or traversal.
+
+
+Tables¶
+ Before computers were readily available, people had to calculate logarithms, 
+ sines and cosines, and other mathematical functions by hand. To make that easier,
+  mathematics books contained long tables listing the values of these functions. 
+  Creating the tables was slow and boring, and they tended to be full of errors.
+
+One of the things loops are good for is generating tables
+for x in range(13):   # Generate numbers 0 to 12
+    print(x, '\t', 2**x)
+
+0       1
+1       2
+2       4
+3       8
+4       16
+5       32
+6       64
+7       128
+8       256
+9       512
+10      1024
+11      2048
+12      4096
+
+
+range function
+
+you'll need two numbers: the starting value and the ending value.
+range(1, 6)
+
+for number in range(1, 6):
+         print (number)
+
+
+Consider the following code:
+
+for number in range(6):
+         print (number)
+
+ if you provide range with three numbers, it will do things a little differently.
+  In this case, the first number will still be the starting value and the second number 
+  remains the ending value. But the third number now represents the value to use as an increment.
+
+range(2, 20, 2)
+
+
+
+
+to get the numbers from 5 to 1, you would use this:
+
+range(5, 0, -1)
+
+
+write a program that's going to get some numbers from our user and compute the average. 
+that this can be done with a for loop just as easily.
+
+#!/usr/bin/env python3
+
+#First, I'll prompt the user for the number of numbers that he or she wants to average.
+num_of_nums = eval(input("How many numbers do you want to average? "))
+
+#Once the user enters the appropriate number of values,
+# I'll stop looping, compute the average, and then display the result. 
+sum = 0.0
+for count in range (num_of_nums):
+         value = eval(input("Enter a value: "))
+         sum = sum + value
+
+average = sum / num_of_nums
+print ("The average is:", average)
+
+
+_________________________________________________________________________
+The while statement
+
+
+The flow of execution for a while statement works like this:
+
+    Evaluate the condition (BOOLEAN EXPRESSION), yielding False or True.
+    If the condition is false, exit the while statement and continue execution at the next statement.
+    If the condition is true, execute each of the STATEMENTS in the body and then go back to step 1.
+
+The body consists of all of the statements below the header with the same indentation.
+
+The body of the loop should change the value of one or more variables so that eventually 
+the condition becomes false and the loop terminates. Otherwise the loop will repeat forever,
+ which is called an infinite loop.
+
+number = 0
+prompt = "What is the meaning of life, the universe, and everything? "
+
+while number != "42":
+    number =  input(prompt)
+
+
+The FOR Loop
+The for loop processes each item in a sequence, so it is used with Python’s sequence data types 
+- strings, lists, and tuples.
+
+
+for LOOP_VARIABLE in SEQUENCE:
+    STATEMENTS
+
+for friend in ['Margot', 'Kathryn', 'Prisila']:
+    invitation = "Hi " + friend + ".  Please come to my party on Saturday!"
+    print(invitation)
+
+
+Choosing between for and while
+Use a for loop if you know, before you start looping, the maximum number of times that you’ll need
+ to execute the body
+
+By contrast, if you are required to repeat some computation until some condition is met, 
+and you cannot calculate in advance when this will happen, as we did in the “greatest name” program, 
+you’ll need a while loop.
+
+
+Trace the execution of a computer program
+Tracing involves “becoming the computer” and following the flow of execution through a sample program run
+
+Abbreviated assignment
+count += 1 is an abbreviation for count = count + 1
+ We pronounce the operator as “plus-equals”
+There are similar abbreviations for -=, *=, /=, //= and %=:
+
+The break statement
+
+The break statement is used to immediately leave the body of its loop.
+ By placing the word break inside your loop, you'll force the program to stop at that exact point 
+ and exit the loop.
+
+for number in range(1, 11):
+         if number == 4:
+                   break
+         print (number)
+print ("Thanks!")
+
+
+for i in [12, 16, 17, 24, 29]:
+    if i % 2 == 1:  # if the number is odd
+        break        # immediately exit the loop
+    print(i)
+print("done")
+
+This prints:
+
+12
+16
+done
+
+continue statement
+The continue statement will allow you to skip the remaining statements in your loop and start a new one. 
+
+This is a control flow statement that causes the program to immediately skip the processing 
+of the rest of the body of the loop, for the current iteration. But the loop still carries on 
+running for its remaining iterations:
+
+for number in range(1, 11):
+         if number == 4:
+                   continue
+         print (number)
+print ("Thanks!")
+
+
+for i in [12, 16, 17, 24, 29, 30]:
+    if i % 2 == 1:      # if the number is odd
+        continue        # don't process it
+    print(i)
+print("done")
+
+This prints:
+
+12
+16
+24
+30
+done
+
+
+The else Clause
+
+we're running the else clause only when the loop exits normally
+
+for number in range(1, 11):
+         if number == 4:
+                   continue
+         print (number)
+else:
+         print ("Exited normally")
+
+
+1
+2
+3
+5
+6
+7
+8
+9
+10
+Exited normally
+
+Imagine you want to create a program with a search component.
+ When users get to a value they're searching for, you want the program to stop searching and do 
+ something else. 
+
+phrase = input("Enter a phrase: ")
+letter = input("Enter a letter: ")
+length = len(phrase)
+
+for index in range(0, length):
+         if phrase [index] == letter:
+                   break
+else:
+         print ("Your letter wasn't found")
+
+
+
+Nested Loops for Nested Data
+It's the same idea as nesting if statements. 
+You simply place one loop inside another. And you're free to do this as many times as you want. 
+The key is to watch your indenting in Python because this is what determines the statements that are
+ inside each loop.
+
+
+students = [("Alejandro", ["CompSci", "Physics"]),
+            ("Justin", ["Math", "CompSci", "Stats"]),
+            ("Ed", ["CompSci", "Accounting", "Economics"]),
+            ("Margot", ["InfSys", "Accounting", "Economics", "CommLaw"]),
+            ("Peter", ["Sociology", "Economics", "Law", "Stats", "Music"])]
+
+
+# print all students with a count of their courses.
+for (name, subjects) in students:
+    print(name, "takes", len(subjects), "courses")
+
+Aljandro takes 2 courses
+Justin takes 3 courses
+Ed takes 4 courses
+Margot takes 4 courses
+Peter takes 5 courses
+
+
+
+Now we’d like to ask how many students are taking CompSci. 
+This needs a counter, and for each student we need a second loop that tests each of the 
+subjects in turn:
+
+# Count how many students are taking CompSci
+counter = 0
+for (name, subjects) in students:
+    for s in subjects:                 # a nested loop!
+        if s == "CompSci":
+            counter += 1
+
+print("The number of students taking CompSci is", counter)
+
+The number of students taking CompSci is 3
+
+
+List comprehensions
+
+A list comprehension is a syntactic construct that enables lists to be created from other lists 
+using a compact, mathematical syntax:
+
+
+numbers = [1, 2, 3, 4]
+[x**2 for x in numbers]
+[1, 4, 9, 16]
+[x**2 for x in numbers if x**2 > 8]
+[9, 16]
+[(x, x**2, x**3) for x in numbers]
+[(1, 1, 1), (2, 4, 8), (3, 9, 27), (4, 16, 64)]
+files = ['bin', 'Data', 'Desktop', '.bashrc', '.ssh', '.vimrc']
+[name for name in files if name[0] != '.']
+['bin', 'Data', 'Desktop']
+letters = ['a', 'b', 'c']
+[n * letter for n in numbers for letter in letters]
+['a', 'b', 'c', 'aa', 'bb', 'cc', 'aaa', 'bbb', 'ccc', 'aaaa', 'bbbb', 'cccc']
+
+
+
+
+4.17. Glossary
+
+append
+    To add new data to the end of a file or other data object.
+block
+    A group of consecutive statements with the same indentation.
+body
+    The block of statements in a compound statement that follows the header.
+branch
+    One of the possible paths of the flow of execution determined by conditional execution.
+chained conditional
+    A conditional branch with more than two possible flows of execution. 
+    In Python chained conditionals are written with if ... elif ... else statements.
+
+
+compound statement
+
+    A Python statement that has two parts: a header and a body. The header begins with a keyword
+     and ends with a colon (:). The body contains a series of other Python statements, 
+     all indented the same amount.
+
+    Note
+    We will use the Python standard of 4 spaces for each level of indentation.
+condition
+    The boolean expression in a conditional statement that determines which branch is executed.
+
+conditional statement
+    A statement that controls the flow of execution depending on some condition. 
+    In Python the keywords if, elif, and else are used for conditional statements.
+counter
+    A variable used to count something, usually initialized to zero and incremented in the body of a loop.
+cursor
+    An invisible marker that keeps track of where the next character will be printed.
+decrement
+    Decrease by 1.
+definite iteration
+    A loop where we have an upper bound on the number of times the body will be executed.
+     Definite iteration is usually best coded as a for loop.
+delimiter
+    A sequence of one or more characters used to specify the boundary between separate parts of text.
+increment
+    Both as a noun and as a verb, increment means to increase by 1.
+infinite loop
+    A loop in which the terminating condition is never satisfied.
+indefinite iteration
+    A loop where we just need to keep going until some condition is met.
+     A while statement is used for this case.
+initialization (of a variable)
+    To initialize a variable is to give it an initial value. Since in Python variables don’t exist until
+     they are assigned values, they are initialized when they are created. 
+     In other programming languages this is not the case, and variables can be created without being
+      initialized, in which case they have either default or garbage values.
+iteration
+    Repeated execution of a set of programming statements.
+loop
+    A statement or group of statements that execute repeatedly until a terminating condition is 
+    satisfied.
+
+loop variable
+    A variable used as part of the terminating condition of a loop.
+nested loop
+    A loop inside the body of another loop.
+nesting
+    One program structure within another, such as a conditional statement inside a branch of another
+     conditional statement.
+newline
+    A special character that causes the cursor to move to the beginning of the next line.
+prompt
+    A visual cue that tells the user to input data.
+reassignment
+    Making more than one assignment to the same variable during the execution of a program.
+tab
+    A special character that causes the cursor to move to the next tab stop on the current line.
+trichotomy
+    Given any real numbers a and b, exactly one of the following relations holds: a < b, a > b, or a == b. 
+    Thus when you can establish that two of the relations are false, you can assume the remaining one is true.
+trace
+    To follow the flow of execution of a program by hand, recording the change of state of the variables and any output produced.
+
+______________________________________
+Chapter 5: Summary
+
+we learned about the while and for loops in Python. 
+
+the while statement is very similar to the if statement
+
+the while structure will let you execute a statement as many times as necessary, until your condition becomes false
+
+the for loop. For the most part, this is the same idea as the while loop, except that it's kind of a
+ shorthand version
+
+break and continue keywords. These gave you a lot more control over the execution
+
+every program uses only three control structures: sequence, decisions, and loops.
+
+QA
+Is it okay to nest loops in Python the same way that we nested if statements?
+
+A: Yes, it is and oftentimes, it's necessary to nest loops in your Python programs. 
+For example, if you want to print the multiplication table for all of the numbers between 0 and 10, 
+you could just do this:
+
+for i in range(0, 10):
+         print ("~~~", i, "~~~")
+         for j in range(0, 10):
+                   print (i*j)
+         print ( )
+
+
+
+QUIZ
+What type of loop uses a variable to keep track of the number of times the loop body should execute?
+Counter controlled loop
+
+Which of the following calls to the range function will give me the even numbers from 10 to 20, 
+including both 10 and 20?
+range(10, 21, 2)
+
+Which of the following key combinations will stop Python in the middle of running an infinite loop?
+CTRL + C
+
+Which of the following statements can be used inside a loop structure to skip the remaining lines of code in 
+that iteration of the loop and start a new iteration?
+continue.
+
+Which of the following compound conditions will evaluate to true even when the value in the choice variable
+ is "N"?
+choice == "Y" or "y"
+
+________________________________________________________
+
+
+
+
+https://en.wikibooks.org/wiki/Python_Programming/Loops
+
+While loops
+
+Here's the source for a program that uses the while control structure:
+
+a = 0
+while a < 5:
+    a += 1 # Same as a = a + 1 
+    print (a)
+
+And here is the output:
+
+1
+2
+3
+4
+5
+
+
+For Loops
+
+onetoten = range(1,11)
+for count in onetoten:
+    print (count)
+
+The output:
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+Note that this program could have been done in a shorter way:
+
+for count in range(1,11):
+    print (count)
+    
+Another way to use the range() function in a for loop is to supply only 
+one argument:
+
+for a in range(10):
+    print (a)
+
+The above code acts exactly the same as:
+
+for a in range(0, 10):
+    print (a)
+with 0 implied as the starting point. The output is
+
+0 1 2 3 4 5 6 7 8 9
+        
+
+
+
+
+
+
+
+
+
+
+
+

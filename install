@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "installing python 2.5"
+echo ""
+echo ""
+wget http://www.python.org/ftp/python/2.5.4/Python-2.5.4.tar.bz2
+tar -zxvf Python-2.5.4.tgz
+ cd Python-2.5.4
+./configure
+make
+sudo make install

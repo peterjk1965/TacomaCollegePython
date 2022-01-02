@@ -1,0 +1,292 @@
+lesson 6
+Object-Oriented Programming with Classes
+
+a class: a way to group our code
+gives us the ability to write a specification, or blueprint, for how an object created 
+from this class should look and behave
+made from two basic things: variables and functions. 
+variables hold characteristics
+functions describe object's behavior
+class constructor: creates the object
+self: referrs to variable that belongs to the object
+
+The class constructor: special function defined inside the class. 
+creates, or constructs, the object. 
+you'll put code in the constructor to set the object's variables to some default value
+each of our variables needs to have self. in front of it  Failure to put this in will make Python
+ think you're referring to a global variable, instead of a variable that belongs to the object.
+    
+we have a class that contains a constructor that sets up our variables to some default value
+we're taking the local parameter value on the right side of the equal sign and 
+storing that value in the object's variable on the left side
+
+class Time:
+       """ Blueprint for a Time object"""   <<< is our doc string for this class.
+       def __init__(self):                  <<<def used to start a function,  __init__ is 
+                                            Python's keyword for the class constructor
+           self.hour = 0                    <<<(self)  the object reference argument, 
+                                            used to gain access to the particular object's variables
+           self.minute = 0                  <<<<
+           self.second = 0
+
+
+_______________________________________
+
+MORE CLASS METHODS
+
+we'll need to write the function, print_time.
+
+def print_time(self):
+       print (self.hour, ":", self.minute, ":", self.second)
+
+________________________________________
+
+Creating Objects
+
+This line lists the variable name of our new Time object, an equal sign, 
+and then the name of the class.
+
+myTime1 = Time()
+
+If you look at Time's constructor, it takes the parameter self. 
+But if you look inside the parentheses here, it's empty.
+because the passing of the self parameter is done implicitly in Python
+writing a class function, you must always start the parameter list with self, 
+and when you call on the function, you always ignore it.
+
+
+myTime1.print_time()
+
+my parentheses are empty
+
+we'll need to be sure to pass in three different numbers
+
+myTime1.set_time(1, 2, 3)
+myTime1.print_time()
+
+________________________________________
+
+Consider the following complete class definition and program that I have in my Time.py file 
+that does what I'm talking about here:
+
+class Time:
+  """ Blueprint for a Time object"""
+  def __init__(self):
+     self.hour = 0
+     self.minute = 0
+     self.second = 0
+
+  def set_time(self, hour, minute, second):
+     self.hour = hour
+     self.minute = minute
+     self.second = second
+
+  def print_time(self):
+     print (self.hour, ":", self.minute, ":", self.second)
+
+# First Time object
+myTime1 = Time()
+myTime1.print_time()
+myTime1.set_time(1, 2, 3)
+
+# Second Time object
+myTime2 = Time()
+myTime2.set_time(12, 0, 0)
+
+print ("My two time objects are now storing:")
+myTime1.print_time()
+myTime2.print_time()
+
+______________________________________
+
+Creating a Module for the Class
+
+you'll define your class in one file and then create the objects and do other things in another file.
+
+cut out all the code that is not part of the class from the bottom of your program and put it 
+into its own file
+you'll need to include the following line of code at the top of the program
+
+
+from Time import Time
+
+here first Time refers to the name of the module that I want to use in this program. 
+Note that the module name is the same as the file name without its extension. 
+I called my file Time.py. 
+
+from Time2 import Time
+
+# First Time object
+myTime1 = Time()
+myTime1.print_time()
+myTime1.set_time(1, 2, 3)
+
+# Secondary Time object
+myTime2 = Time()
+myTime2.set_time(12, 0, 0)
+
+print ("My two time objects are now storing:")
+myTime1.print_time()
+myTime2.print_time()
+
+The second Time is the name of the class that I want to import and use in my program. 
+
+class Time:
+    """ Blueprint for a Time object"""
+    def __init__(self):
+        self.hour = 0
+        self.minute = 0
+        self.second = 0
+
+    def set_time(self, hour, minute, second):
+        self.hour = hour
+        self.minute = minute
+        self.second = second
+
+    def print_time(self):
+        print (self.hour, ":", self.minute, ":", self.second)
+#        print ('%d:%d:%d' % (self.hour, self.minute, self.second))
+
+
+Now that we have our class definition separated from our main program, 
+let's take a look at how Python allows us to access our object's variables directly.
+
+_________________________________________
+
+Accessing Class Variables Directly
+
+you're able to access the object's variables directly. 
+Other object-oriented languages allow you to create your class variables with access restrictions
+
+myTime1.hour = 50
+
+while Python gives direct access to an object's variables, that doesn't mean it's a good idea
+
+a convention has come up where programmers will put two underscore characters
+ (__) before a variable name in their classes to note that they shouldn't be accessed directly. 
+
+For our Time class, the code in this scenario would look like so:
+
+
+class Time:
+   """ Blueprint for a Time object"""
+   def __init__(self):
+      self.__hour = 0
+      self.__minute = 0
+      self.__second = 0
+
+   def set_time(self, hour, minute, second):
+      self.__hour = hour
+      self.__minute = minute
+      self.__second = second
+
+   def print_time(self):
+      print (self.__hour, ":", self.__minute, ":", self.__second)
+
+   def set_second(self, second):
+      self.__second = second
+
+   def get_second(self):
+      return self.__second
+
+
+By doing this, you, the Python interpreter, will perform what is known as name mangling. 
+That is, now you won't be able to access each of the fields directly. 
+
+
+________________________________________________
+
+Special Attributes
+
+
+Python gives each class a variety of special attributes or specialized information that we can 
+access through code. There are a number of different attributes, but I'll just cover a few of the 
+most common ones here.
+
+ __doc__
+
+use this in your code to get a listing of the documentation string for the class
+
+print (myTime1.__doc__)
+
+__class__
+
+This attribute will give you the class from which the object was created.
+ For example, we could try the following:
+
+print (myTime1.__class__)
+
+
+
+Summary
+
+Lesson 6: FAQs
+
+A class. describes code that is used as a blueprint to create a Python object
+
+
+self:  must be included as a parameter in every class function
+
+A constructor is a special function that sets the initial values of an object's variables.
+
+print (emp01.__doc__ )   will print the documentation string comment that's a part 
+of the Employee object named emp01
+
+Name mangling.   describes the action of the interpreter to somewhat deny direct 
+access to an object's variables
+
+
+______________________________________________________
+
+Supplemental stuff
+
+A namespace is a mapping from names to objects
+in the expression z.real, real is an attribute of the object z
+in the expression modname.funcname, modname is a module object and funcname is an attribute of it
+Attributes may be read-only or writable.
+del modname.the_answer will remove the attribute the_answer from the object named by modname
+
+https://docs.python.org/3/tutorial/classes.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

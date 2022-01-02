@@ -1,0 +1,74 @@
+
+Meteorologists use the Saffir-Simpson Scale to classify the strength of hurricanes. 
+
+The intensity is based on the maximum sustained wind speed of a storm as follows:
+
+prompt the user for a wind speed
+
+
+program should use this wind speed to display a message telling the user the hurricane's intensity based on the table above.
+
+__________________________________________________________
+
+Heres my homework : )
+
+#!/usr/bin/env python3
+
+# Ask for the speed.
+speed = input('How fast is the wind blowing in miles per hr? ')
+
+
+# Convert the distance to an integer.
+speed = int(speed)
+
+# Determine hurricane category.
+if speed < 74:
+    category_of_hurricane = 'Cat1'
+elif speed <= 95:
+    category_of_hurricane = 'Cat2'
+elif speed <= 110:
+    category_of_hurricane = 'Cat3'
+elif speed <= 130:
+    category_of_hurricane = 'Cat4'
+else:
+    category_of_hurricane = 'Cat5'
+
+
+# display a message telling the user the hurricane's intensity
+
+print('Looks like a {} hurricane.'.format(category_of_hurricane))
+
+
+
+
+
+
+
+
+___________________________________________________________
+SOLUTION
+
+# Introduction to Python Programming
+# Lesson 03 Assignment
+# Sample Solution
+
+# Please note that this program takes advantage of the fact that
+#   once a condition is met, the if structure is exited.  This
+#   allows me to not need a lower limit in my conditions because
+#   if the speed were below the minimum for that Category, the
+#   program would have already printed the result and exited.
+
+speed = eval(input("Please enter the wind speed: "))
+
+if speed < 74:
+    print ("This is not a hurricane")
+elif speed <= 95:
+    print ("Category 1")
+elif speed <= 110:
+    print ("Category 2")
+elif speed <= 130:
+    print ("Category 3")
+elif speed <= 155:
+    print ("Category 4")
+else:
+    print ("Category 5")

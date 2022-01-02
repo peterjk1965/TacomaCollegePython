@@ -1,0 +1,458 @@
+lesson 12
+Tinker
+
+
+Let's just look at a simple program that creates a single Frame and displays it:
+
+define our constructor, __init__, 
+
+The Frame is the window that shows up on the screen
+
+
+from tkinter import *
+
+class MyFrame(Frame):
+   def __init__(self):
+       Frame.__init__(self)
+
+frame01 = MyFrame()
+frame01.mainloop()
+
+
+create an object from this class type
+
+it's the variable named frame01. Finally, we use this object to call on mainloop( ) which is what keeps our window open.
+
+____________________________
+
+The Label Component
+
+Labels display text or an image to the user
+
+
+from tkinter import *
+
+class MyFrame(Frame):
+   def __init__(self):
+       Frame.__init__(self)
+       self.grid()
+
+       self.message = Label(self, text = "Hello World!")
+       self.message.grid()
+
+frame01 = MyFrame()
+frame01.mainloop()
+
+
+Let's change the Frame to make it bigger
+
+self.master.geometry("200x200")
+
+from tkinter import *
+
+class MyFrame(Frame):
+   def __init__(self):
+       Frame.__init__(self)
+       self.master.geometry("200x200")
+       self.grid()
+
+       self.message = Label(self, text = "Hello World!")
+       self.message.grid()
+
+frame01 = MyFrame()
+frame01.mainloop()
+
+
+using the keyword master to access the master or base class. This class has an attribute named geometry that controls the size of the Frame.
+you need to pass it a string that lists the width, then a lowercase letter x, followed by the height
+
+add a title to your window's title bar by setting the master's title property. like so:
+
+self.master.title("My GUI")
+
+from tkinter import *
+
+class MyFrame(Frame):
+   def __init__(self):
+       Frame.__init__(self)
+       self.master.geometry("200x200")
+       self.master.title("My GUI")
+       self.grid()
+
+       self.message = Label(self, text = "Hello World!")
+       self.message.grid()
+
+frame01 = MyFrame()
+frame01.mainloop()
+
+____________________________________________
+
+The Button Component
+
+event-driven programming, the program just sits there doing nothing until the user does something to generate an event. 
+Events are: typing at the keyboard, moving the mouse, or clicking one of the mouse's buttons.
+
+When you create a Button, you'll want to specify two things: the text displayed and what you want done when the button is pressed.
+When we create the Button, we just use the text option and set it equal to whatever text we want displayed. 
+
+ Set the command option equal to the name of a method. Of course, you'll also have to define that method, but that's easy too because you've done it before.
+ to define a method, you list the keyword def, followed by the name of the method and the list of parameters that this method needs. 
+
+the following code will create a Frame containing a Button. When the user clicks the button, a message will show up on the console window:
+
+from tkinter import *
+
+class MyFrame(Frame):
+   def __init__(self):
+       Frame.__init__(self)
+       self.master.geometry("200x200")
+       self.master.title("My GUI")
+       self.grid()
+
+       self.button_click_here = Button( self, text = "Click Here",
+           command = self.click_here_click )
+       self.button_click_here.grid()
+
+   def click_here_click(self):
+       print ("You did it!" )
+
+frame02 = MyFrame()
+frame02.mainloop()
+
+
+____________________________________
+
+Updating Text
+
+we'll need to make use of a control variable
+any GUI component that uses this value will also be updated.
+you'll need to set the Label's text variable option equal to the control variable you create. 
+this variable needs to be a StringVar object. a special data type that allows the value of the string contained in the Label control to be changed at runtime
+
+The following lines of code will create a class control variable named my_text and then make a Label whose textvariable option is equal to this new variable:
+
+self.my_text = StringVar()
+self.message = Label(self, textvariable = self.my_text)
+
+
+
+from tkinter import *
+
+class MyFrame(Frame):
+   def __init__(self):
+       Frame.__init__(self)
+       self.master.geometry("200x200")
+       self.master.title("My GUI")
+       self.grid()
+
+       self.button_click_here = Button( self, text = "Click Here",
+           command = self.click_here_click )
+       self.button_click_here.grid()
+       self.my_text = StringVar()
+       self.message = Label(self, textvariable=self.my_text)
+
+   def click_here_click(self):
+       print ("You did it!" )
+
+frame02 = MyFrame()
+frame02.mainloop()
+
+
+any time you want to make a change to the text stored in this variable, you just call the set( ) method and pass the new text to this method inside the parentheses. 
+
+
+________________________________________
+
+The Entry Component
+
+allows to type in one line of text for input into the program. 
+
+get( ) method. returns the text in the form of a string.
+
+a program that will prompt users for their name in a Label.
+an Entry so that they can enter it. 
+a Button for users to click and a second Label for the output.
+
+from tkinter import *
+
+class MyFrame(Frame):
+   def __init__(self):
+       Frame.__init__(self)
+       self.master.geometry("300x200")
+       self.master.title("My GUI")
+       self.grid()
+
+       self.prompt = Label(self, text = "What's your name?")
+       self.prompt.grid()
+
+       self.input = Entry(self)
+       self.input.grid()
+
+       self.button_submit = Button( self, text = "Submit",
+           command = self.submit_click )
+       self.button_submit.grid()
+
+       self.my_text = StringVar()
+       self.message = Label(self, textvariable = self.my_text)
+       self.message.grid()
+
+   def submit_click(self):
+       output_message = "Hi " + self.input.get()
+       self.my_text.set(output_message)
+
+frame04 = MyFrame()
+frame04.mainloop()
+
+
+______________________________________
+
+The Grid Layout Manager
+
+ the grid layout manager lays out a grid on the Frame. a grid layout places the components on the Frame from top to bottom.
+can specify a different setup by using the grid method's row and column options. 
+When you leave out the row and column options, the components are put onto the grid as if there's only one column
+
+To fix the layout in your program so that the prompt Label and the Entry component are on the same line, just change your grid( ) calls so that each specifies to place the component on row 0. You'll then place the Label in column 0 and the Entry in column 1. The lines to add the Label and Entry components now look like this:
+
+       self.prompt = Label(self, text = "What's your name?")
+       self.prompt.grid(row = 0, column = 0)
+
+       self.input = Entry(self)
+       self.input.grid(row = 0, column = 1)
+
+the prompt Label and the Entry are now on the same line. 
+ because you specified that they both be placed in row 0,
+but in columns 0 and 1, respectively. 
+Because the Button and output Label still used grid( ) with no options, they were placed just as before.
+
+what if we wanted these widgets placed in the exact center below the prompt Label and Entry widgets?
+simply use the columnspan option when you call grid. 
+This option specifies the number of columns that this component should occupy in the grid
+you'll need to set columnspan to 2 for both the Button's and the output Label's call to grid.
+
+
+from tkinter import *
+
+class MyFrame(Frame):
+   def __init__(self):
+       Frame.__init__(self)
+       self.master.geometry("300x200")
+       self.master.title("My GUI")
+       self.grid()
+
+       self.prompt = Label(self, text = "What's your name?")
+       self.prompt.grid(row = 0, column = 0)
+
+       self.input = Entry(self)
+       self.input.grid(row = 0, column = 1)
+
+       self.button_submit = Button( self, text = "Submit",
+           command = self.submit_click )
+       self.button_submit.grid(columnspan = 2)
+
+       self.my_text = StringVar()
+       self.message = Label(self, textvariable = self.my_text)
+       self.message.grid(columnspan = 2)
+
+   def submit_click(self):
+       output_message = "Hi " + self.input.get()
+       self.my_text.set(output_message)
+
+frame04 = MyFrame()
+frame04.mainloop()
+
+
+
+to see a little bit of space between each of the 3 rows. using the grid option, pady. 
+
+Make your grid( ) call look like the following:
+
+self.button_submit.grid(columnspan = 2, pady = 10)
+
+The grid( ) method also has an option for padx that works just like pady, except that the space is added to the left and the right of the component.
+
+
+____________________________________________________
+The Checkbutton and Radiobutton Components
+
+Checkbuttons have a wide variety of options available. 
+text option. This allows you to set the text displayed next to the Checkbutton's box. 
+command option, which is similar to a Button's command option. allows to specify which method is to be run when the user clicks the Checkbutton.
+
+ Checkbutton's variable option. keeps track of the current state of the Checkbutton; 
+whether it is checked or unchecked. Typically, you'll use a IntVar object to keep track of this value. 
+
+
+To create and add the bold Checkbutton, you'd do this:
+
+self.bold_on = IntVar()   <<<<<creates my IntVar object.
+self.check_bold = Checkbutton(self, text = "Bold",
+   variable = self.bold_on, command = self.set_font)
+self.check_bold.grid(row = 1, column = 0)
+
+
+
+Let's write that method next:
+<<<<<< create a variable to hold the name of the font.
+def set_font(self):
+   new_font = "Courier 10"  
+
+   if self.bold_on.get() == 1:
+       new_font = new_font + " bold"
+   if self.underline_on.get() == 1:
+       new_font = new_font + " underline"
+
+   self.sample_label.config( font = new_font)
+
+
+
+
+
+
+from tkinter import *
+
+class MyFrame(Frame):
+   def __init__(self):
+       Frame.__init__(self)
+       self.master.geometry("300x200")
+       self.master.title("My GUI")
+       self.grid()
+
+       self.prompt = Label(self, text = "What's your name?")
+       self.prompt.grid(row = 0, column = 0)
+
+       self.input = Entry(self)
+       self.input.grid(row = 0, column = 1)
+
+       self.button_submit = Button( self, text = "Submit",
+           command = self.submit_click )
+       self.button_submit.grid(columnspan=2, pady=10)
+
+       self.my_text = StringVar()
+       self.message = Label(self, textvariable = self.my_text)
+       self.message.grid(columnspan = 2)
+
+
+   def submit_click(self):
+       output_message = "Hi " + self.input.get()
+       self.my_text.set(output_message)
+
+       def set_font(self):
+           new_font = "Courier 10"
+
+           if self.bold_on.get() == 1:
+               new_font = new_font + " bold"
+           if self.underline_on.get() == 1:
+               new_font = new_font + " underline"
+
+           self.sample_label.config(font=new_font)
+
+frame04 = MyFrame()
+frame04.mainloop()
+
+
+______________________________________
+
+Radiobuttons
+
+ options specified by Radiobuttons are mutually exclusive. That is, if I decide to make my font 10 point, then it can't be 12 point at the same time
+only one value can be selected at a time. 
+
+ let's just give them the option to make their font point-size either 10 or 12. 
+ create the StringVar object to hold the value for the selected Radiobutton. 
+call the set( ) method next to give this variable a value.
+
+self.point_size = StringVar()
+self.point_size.set("10")
+
+The statement to create a Radiobutton is nearly identical to the one to create a Checkbutton.
+With the Checkbutton, it made sense to simply have our widget store a 0 if it wasn't selected or a 1 if it was. 
+
+
+The statement to create the 10 point Radiobutton looks like this:
+
+self.ten_point = Radiobutton(self, text = "10 point",
+   variable = self.point_size, value = "10",
+   command = self.set_font)
+
+
+
+update the set_font method so that it accounts for a user's font size. 
+remove the "10" from the line of code that sets the initial value of new_font.
+call the get( ) method for your self.point_size StringVar variable.
+
+
+
+_______________________________________________
+
+FAQ
+
+ Why did you use a StringVar object with your font size Radiobuttons. Couldn't you have just used an IntVar here as well?
+Yes, an IntVar would have worked in this situation just as easily as a StringVar. I just wanted to demonstrate that either one is possible.
+
+ When you're building the string that contains the font information in your method's nested if statements, you need to be sure to have a blank space as the first character in the string. 
+By doing this, you'll create a string that eventually looks something like, "Courier 10 bold", as opposed to "Courier10bold".
+Here's an example:
+
+if self.point_size.get() == "10":
+   new_font = new_font + " 10"
+
+How can I set things up so that my widgets are centered inside the frame?
+ you can use the padx and pady properties discussed in the lesson
+ the frame contains methods columnconfigure and rowconfigure that can be used to specify certain properties, including pad (the number of pixels to be added to the column or row) and minsize (the minimum size in pixels
+
+
+_____________________________________
+QUIZ
+
+What two options are used with the grid( ) layout manager to specify the location where the widget is to be placed?
+Row and column.
+
+Which GUI component best allows the user to select anywhere between none and all of the different options available?
+Checkbutton.
+
+Which of the following statements about a Label widget is correct?
+A Label's text can be changed during runtime if the textvariable option is set to a control variable.
+
+Which of the following lines of code will test to see if a StringVar object named self.relief is storing the value "groove"?
+if self.relief.get() == "groove":
+
+Which of the following statements about the padx option is correct?
+The padx option specifies the amount of empty space between the left and right of the widget.
+
+_________________________________________
+
+Refrence
+
+https://infohost.nmt.edu/tcc/help/pubs/tkinter.pdf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

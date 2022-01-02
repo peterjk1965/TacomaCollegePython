@@ -1,0 +1,205 @@
+Lesson 11
+
+Lesson 11: Handling Python Exceptions
+
+The point of using an exception argument in your code is to give a more personalized description of what happened to your user.
+
+NameError exception
+
+the IndexError and NameError arguments contain a message that give you a single line of text to describe what happened. 
+
+value = eval( input("Enter a number: ") )
+Enter a number: Mike 
+
+...
+NameError: name 'Mike' is not defined
+
+A NameError is an exception that comes up when Python encounters a variable name that it doesn't recognize.
+Python is actually checking through its list of variables for one with that name. Since it didn't find one, the NameError came up. 
+if you had created such a variable and assigned it a numeric value, then the program would have run without any exceptions coming up. 
+
+
+To handle exceptions, Python gives us try blocks and except blocks. 
+
+except block immediately following the last statement of the try. 
+
+note that both the try and the except statements end with a colon 
+
+you can place as many statements as you like inside each block
+
+try:
+   age = eval( input('Please enter your age: ') )
+   ten_years = age + 10
+   print ("In 10 years, you'll be", ten_years)
+except NameError:
+   print ("You must enter a number for your age")
+
+Please enter your age: 45
+In 10 years, you'll be 55
+
+_____________________________
+we need some way to handle it when one line of code can generate multiple exceptions.
+
+try:
+   age = eval( input("Please enter your age: ") )
+   ten_years = age + 10
+   print ("In 10 years, you'll be", ten_years)
+except NameError:
+   print ("You must enter a number for your age")
+except SyntaxError:
+   print ("You must enter a number for your age")
+
+print ("Have a nice day. Goodbye.")
+
+
+Now when you run your program, it won't matter if you enter a word like, me or a number and then a word like, 10ten. Either way, your program will handle the situation, print the error message that we came up with, and then finish with the goodbye message.
+
+The only problem you might have with the code above is the fact that the code inside both except blocks is exactly the same.
+
+If you want the exact same code to run for two or more exception types, you can simply place the exception list inside parentheses after the keyword except. 
+
+
+try:
+
+   age = eval( input("Please enter your age: ") )
+   ten_years = age + 10
+   print ("In 10 years, you'll be", ten_years)
+except (NameError, SyntaxError):
+   print ("You must enter a number for your age")
+
+print ("Have a nice day. Goodbye.")
+
+let's explore a few other features of Python exceptions. 
+___________________________________
+Exception Arguments
+
+This time, we'll attempt to access a list element that doesn't exist. 
+
+try:
+   my_list = [0, 1, 2]
+   print (my_list [4])
+except IndexError as ie:
+   print (ie)
+
+list index out of range
+
+ the IOError will give you a variety of properties to give us details about what's going on. 
+
+
+___________________________________
+The else and finally Blocks
+
+You've written your try block and except block and everything is ready to go. However, I want you to consider creating an else block. The code in the else block will be executed if and only if no exception occurs while the program is running.
+
+try:
+   user_num = eval( input("Please enter a number: ") )
+   result = 10 / user_num
+except (NameError, SyntaxError):
+   print ("The value you entered was not a number")
+except ZeroDivisionError:
+   print ("You cannot divide by zero")
+else:
+   print ("The result of dividing 10 by your number is", result)
+
+
+ The first problem is that the user's input might not be a valid number. For that, you'll need to handle the NameError and SyntaxError exceptions.
+You also need to worry about whether the user enters the value 0, because if you attempt to divide any number by zero, you'll come up with a ZeroDivisionError.
+
+it's quite possible that our user will actually enter a valid number other than 0. In that case, you'll want to do the division and print the answer.
+the code in the else block will only run if no exception occurs when the program runs.
+
+The last block that I want to address here is the finally block. This block is where you'll place code that you want to be run whether an exception occurs or not.
+
+try:
+   infile = open('data.txt', 'r')
+   try:
+       value = infile.readline()
+       number = int(value)
+       print (number)
+   finally:
+       infile.close()
+       print ("the data file was closed")
+except IOError as io:
+   print ("Could not open file:", io.filename)
+except ValueError:
+   print ("Could not convert", value, "to a number")
+
+
+there might be some problem opening the file. If so, then we'll skip right to the except statement that handles the IOError, print the message, and we're done.
+
+ What if the data can't be converted to a valid number? In this case, the program generates a ValueError.
+
+remember, our data file is still open. And since it's not a good idea to open a file and not close it, we'll want to do this first. That's where the finally block comes in.
+
+once an exception occurs, the program stops execution at that exact point, and then the except block code is run. 
+
+
+
+Lesson 11: FAQs
+
+____________________________________________
+
+
+I noticed in your examples that you always use the initials of the exception type for your exception argument. For example, your IOError argument is called, ioe. And your IndexError is named, ie. Is this required?
+
+A: No, there's nothing special about the names I've chosen for my exception arguments. This is just a personal convention that I've come up with. By using the initials, it helps me to keep track of which exception I'm working with and makes my code a little easier to read.
+
+
+I never got an OverflowError in my program from the assignment. Why is this?
+
+A: Double check your code and make sure that you're using floating point numbers—numbers with a decimal point.
+
+________________________________________________
+
+Lesson 11 Assignment
+
+OverflowError, which happens when a floating point number (a number with a decimal point) is too big to be stored in memory, 
+
+and the KeyboardInterrupt, which occurs when the user presses CTRL + C.
+
+_________________________________________________
+
+QUIZ
+
+In exception handling, which keyword starts the block of code that contains the code to be run should an error occur?
+except.
+
+Which method finds out all of the attributes of an exception or any other Python object?
+dir( ).
+
+What is the output from the following program? 
+Error with the file
+Have a nice day
+
+Which type of block contains code that you want executed whether an exception occurs or not?
+Finally block
+
+If you want to write code to handle all possible exceptions, what type of object should your code handle?
+Exception.
+
+__________________________________________________
+
+https://doughellmann.com/blog/?s=python+exception+handling
+
+https://doughellmann.com/blog/2009/06/19/python-exception-handling-techniques/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,297 @@
+
+lesson 5
+
+modular programs
+
+age = eval(input("Enter your age: "))
+
+
+input:  get user information, store it in a variable on left side of the equal sign. 
+
+general form of a Python function:
+
+def < function name > ( < parameter list >):
+    < documentation string >
+    < the function's code >
+_____________________________________________
+
+def: shorthand for define. 
+
+define functions at the beginning of a file, have the calling statements at the end of the file.
+
+def print_welcome():
+    """This function prints two lines of text"""
+    print ("Welcome to my program")
+    print ("I hope you like it")
+
+_____________________________________________
+def print_welcome():
+    """This function prints two lines of text"""
+    print ("Welcome to my program")
+    print ("I hope you like it")
+
+print_welcome()
+print()
+print ("To say it again")
+print()
+print_welcome()
+
+
+I hope you like it
+
+To say it again
+
+Welcome to my program
+I hope you like it
+
+____________________________________________
+pass values into a function.
+
+
+def print_value(value):
+    """This function prints the value passed in"""
+    print ("Your value is:", value)
+
+
+____________________________________________
+change the value passed in
+
+def change_value(value):
+    """This function changes the value passed in to 1"""
+    print ("Inside, value is:", value)
+    value = 1
+    print ("Inside, value is changed to:", value)
+
+number = 5
+print ("Outside, number is:", number)
+change_value(number)
+print ("Outside, number is now:", number)
+
+we start our number variable with the value 5
+
+____________________________________________
+The following example uses the global statement:
+
+def change_number():
+    """This function changes the value passed in to 1 (global)"""
+    global number
+    number = 1
+
+number = 5
+print ("Outside, number is:", number)
+change_number()
+print ("Outside, number is now:", number)
+
+
+Outside, number is: 5
+Outside, number is now: 1
+
+______________________________________________
+Returning Values From Functions
+
+Passing a value back or returning a value from a function is done
+ with the keyword return. 
+
+# Python Program for Square of a Number
+
+def square(num):
+    return num * num
+
+number = float(input(" Please Enter any numeric Value : "))
+
+sqre = square(number)
+
+print("The Square of a Given Number {0}  = {1}".format(number, sqre))
+
+______________________________________________
+Write some code that will call the square function 
+for each of the numbers between 1 and 10 and print each of the results:
+
+for i in range(1,11):
+    print (square(i))
+
+
+______________________________________________
+def print_welcome():
+    """This function prints two lines of text"""
+    print ("Welcome to my program")
+    print ("I hope you like it")
+
+print (print_welcome())
+
+Welcome to my program
+I hope you like it
+None
+
+
+______________________________________________
+
+Default Arguments
+
+default argument: function called with a fewer arguments than is required in a parameter list.
+
+provide a default value in parameter list, by placing an equal sign and a value next to
+ the variable in your parameter list.
+
+def square(num = 1):
+    """This function calculates the square of a number"""
+    result = num * num
+    return result
+
+_____________________________________________
+
+Keyword Arguments
+
+use keyword arguments to specify which variables in the function's parameter list should be storing which values. 
+
+______________________________________________
+
+# Introduction to Python Programming
+# Lesson 05 Assignment
+# Sample Solution
+
+def convert_to_fahrenheit(celsius):
+    """This function converts a Celsius temp to a Fah temp"""
+    fahrenheit = 9.0/5.0 * celsius + 32
+    return fahrenheit
+
+for cel in range(0, 101, 10):
+    # The \t here is used to insert a Tab into the output
+    print (cel, "\t", convert_to_fahrenheit(cel))
+
+
+Write a Python program that will print a table of Celsius temperatures and their Fahrenheit equivalents between 0 and 100 Celsius in increments of 10 degrees. Your program should include a function named, convert_to_fahrenheit that takes a Celsius temperature and returns the corresponding Fahrenheit temperature.
+
+The formula used to convert a Celsius temperature to a Fahrenheit temperature is this:
+
+Fahrenheit = 9.0/5.0 * Celsius + 32
+
+________________________________________________
+
+
+QA
+
+How do you specify which statements are part of a Python function?
+All statements in the function are indented the same amount.
+
+Which Python keyword is used to start the definition of a function?
+def.
+
+
+A function that doesn't have a return statement will return which of the following?
+None.
+
+
+What do you need to do in order to write a line of code inside a function that changes 
+a variable outside the function?
+Be sure that the function uses the global statement to get access to this variable.
+
+
+If you want to allow your function to be called even when some arguments aren't specified, what will you need to provide?
+Default arguments.
+
+_________________________________________________
+
+Supplementaty
+
+https://www.tutorialspoint.com/python/python_functions.htm
+
+
+
+As you already know, Python gives you many built-in functions like print(), 
+but you can also create your own functions. These functions are called user-defined functions.
+
+Defining a Function
+
+You can define functions to provide the required functionality. 
+Here are simple rules to define a function in Python.
+
+    Function blocks begin with the keyword def followed by the function name and parentheses ( ( ) ).
+
+    Any input parameters or arguments should be placed within these parentheses. 
+    You can also define parameters inside these parentheses.
+
+    The first statement of a function can be an optional statement - the documentation 
+    string of the function or docstring.
+
+    The code block within every function starts with a colon (:) and is indented.
+
+    The statement return [expression] exits a function, optionally passing back an 
+    expression to the caller. A return statement with no arguments is the same as return None.
+
+
+def functionname( parameters ):
+   "function_docstring"
+   function_suite
+   return [expression]
+
+
+The following function takes a string as input parameter and prints it on standard screen.
+
+def printme( str ):
+   "This prints a passed string into this function"
+   print str
+   return
+
+__________________________________________
+
+Once the basic structure of a function is finalized, you can execute it by calling it
+ from another function or directly from the Python prompt.
+  Following is the example to call printme() function −
+
+#!/usr/bin/python
+
+# Function definition is here
+def printme( str ):
+   "This prints a passed string into this function"
+   print str
+   return;
+
+# Now you can call printme function
+printme("I'm first call to user defined function!")
+printme("Again second call to the same function")
+
+When the above code is executed, it produces the following result −
+
+I'm first call to user defined function!
+Again second call to the same function
+
+
+
+_________________________________________________
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

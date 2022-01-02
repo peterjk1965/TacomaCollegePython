@@ -1,0 +1,69 @@
+Class 1 notes
+
+So, Python uses English-like syntax, and it doesn't use curly braces { } to block out its code. Instead it favors simple white space indenting.
+
+translates the high-level code, one line at a time, as the program is running
+interpreters
+
+go through the entire program and translate everything at once
+compiler
+
+two types of programs that do this translation. One type, called interpreters, translates the high-level code, one line at a time, as the program is running. This is different from a compiler, which will go through the entire program and translate everything at once. 
+
+
+Many common programming languages today use a compiler such as Java, C++, C#, and Visual Basic. Others use an interpreter. Python is an interpreted language
+
+ So, Python uses English-like syntax, and it doesn't use curly braces { } to block out its code. Instead it favors simple white space indenting.
+
+    print "Hello world!"
+
+Please note, Python is a case-sensitive language. Therefore, typing print is different from typing Print. Only the all lowercase print will work here.
+
+phrase = "Hello world!"
+print phrase
+
+print phrase
+Hello world!
+
+ literal string. 
+In general, a string is just a collection of letters. The reason we're calling
+ this a literal string is because we want to literally see the phrase Hello World! 
+ on the screen. 
+
+In Python, a set of characters that are enclosed in double quotes (" ") are known as what?
+A literal string
+
+What would happen if you typed the following Python statement at the Python command prompt:
+print "hello"
+You would see the work hello on screen
+
+in python 3 you need to use ()
+
+QUIZ 1
+
+translates high-level instructions all at once, before any code is run?
+compailer
+
+Which of the following is the Python command prompt?
+>>>
+
+a set of characters that are enclosed in double quotes (" ") are known as what?
+a literal string
+
+if you typed the following Python statement at the Python command prompt:
+print "hello"
+
+you would see
+ hello world
+ print(f'hello')
+
+
+Which of the following statements regarding IDLE is correct?
+free development environment for python
+
+
+
+
+
+
+

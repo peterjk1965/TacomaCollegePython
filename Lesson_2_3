@@ -1,0 +1,614 @@
+python chapterr 2 3 4 review
+
+make use of the eval( ) function to convert the string into a number before doing the math:
+
+future_age = eval(age) + 10
+
+
+
+age = eval(input("Enter your age "))
+future_age = age + 10
+print (future_age)
+
+_______________________________________
+
+What if you want to raise one number to a power? Maybe you need to figure out the value of 2 squared or 100 to the 10th power. 
+print (2 ** 2)
+print (100 ** 10)
+________________________________________
+pi
+import statement. This is a line of code that tells the computer that you're going to reference something in this library file. 
+
+import math
+
+print ("The value of Pi is")
+print (math.pi)
+
+print ("There's even another way to")
+print ("do power, with math.pow")
+print (math.pow(2, 2) )
+
+The value of Pi is
+3.141592653589793
+There's even another way to
+do power, with math.pow
+4.0
+
+
+_________________________________________
+strings
+
+print ("New " + "York")
+
+New York
+
+
+ Note that in order to get the blank space between the two words,
+  I placed a blank space before my closing quote after the word New.
+
+__________________________________________
+length
+
+word = "My words are important!"
+print (len(word))
+
+23
+
+__________________________________________
+
+indexing and slicing. Strings are just a collection of zero or more characters.
+
+phrase = "Python rocks"
+print (phrase [0] )
+
+P
+
+By placing the number 0 inside the square brackets, we're asking for the first letter in the phrase variable, which is 'P'.
+__________________________________________
+
+phrase = "Python rocks"
+print (phrase [1:3] )
+
+yt
+
+Python will take that first number, 1, and start its slice there. However, the second number isn't a number of characters to take.
+ Instead, it's the end of the slice. But here's where it gets a bit confusing. That last character position, here 3, isn't included in the slice
+___________________________________________
+phrase = "Python rocks"
+print (phrase [7:11] )
+
+rock
+
+___________________________________________
+phrase = "Python rocks"
+print (phrase [7:] )
+
+rocks
+
+Python allows you to omit either of the numbers to get to the ends.
+___________________________________________
+
+you cannot use this method to put a new character in a certain position
+
+phrase [0] = 'p'
+
+ We can accomplish the same thing by doing this:
+
+phrase = 'p' + phrase [1:] 
+
+___________________________________________
+This statement starts with the keyword if, followed by some condition.
+The condition that you put in your code is known as a Boolean condition. This just means that the condition must evaluate to either true or false. 
+Another very important part of this first line is the colon (:) at the end.
+you can list as many statements to be run here as you want. The key is that these statements must be indented. 
+
+if < condition > :
+   < true statements >
+< statements outside the if structure >
+
+___________________________________________
+
+age = 10
+if age == 10:
+    print ("ten")
+print ("how's that?")
+
+ten
+how's that?
+
+comparing the value of the variable age to 10, is going to evaluate to true.
+_______________________________________
+
+age = 10
+if age != 10:
+    print ("ten")
+print ("how's that?")
+
+how's that?
+
+you don't get the ten output on the screen because the condition evaluated to false.
+______________________________________
+comparing strings is done exactly the same way.
+
+name = "me"
+if name == "me":
+    print ("the same")
+
+the same
+______________________________________
+
+ In Python, these operators work on strings too, only they're compared in alphabetical order.
+
+letter = "C"
+if letter < "D":
+    print ("less than D")
+
+if letter > "B":
+    print ("greater than B")
+
+less than D
+greater than B
+
+ the comparison of each character is based on the value that is used to store it. Python uses Unicode values for this.
+
+_______________________________________
+
+comparing strings is that all of the capital letters come before any of the lowercase letters.
+
+letter = "C"
+if letter < "a":
+    print ("less than a")
+
+less then a
+
+ this is because the uppercase 'C' comes before the lowercase 'a' in Unicode.
+_____________________________________
+
+else
+
+if < condition > :
+   < true statements >
+else:
+   < false statements >
+< statements outside the if structure >
+
+Notice once again that after the keyword else, we have a colon (:). Again, this is to tell the computer that the next statements are to be done when the condition is false. Also notice how once again the statements that are part of the else are indented. 
+______________________________________
+
+if age >= 18:
+   print ("You are old enough to vote.")
+else:
+   print ("You are not old enough to vote.")
+
+If that value is greater than or equal to 18, then the first message is printed telling the user that he or she is old enough. But if the user's age is less than 18, the second message is displayed.
+
+______________________________________
+
+you can have multiple lines of code in either your true or false path
+
+if age >= 18:
+   print ("Congratulations!")
+   print ("You are old enough to vote.")
+else:
+   print ("I'm sorry.")
+   print ("You are not old enough to vote.")
+
+pay close attention to the indenting because this is necessary 
+in order for Python to tell the difference between the code that is
+ part of the if structure and the code that isn't.
+
+_____________________________________
+
+year = eval(input("Enter year: "))
+if year == 1:
+   print ("Freshman")
+if year == 2:
+   print ("Sophomore")
+if year == 3:
+   print ("Junior")
+if year == 4:
+   print ("Senior")
+
+Enter year: 1
+Freshman
+
+once the computer has determined that the user's year is "Freshman," there's no real need to check any of the other values for year. Doing those comparisons just wastes time. The nested structure is an easy fix. 
+______________________________________
+
+year = eval(input("Enter year: "))
+if year == 1:
+  print ("Freshman")
+else:
+  if year == 2:
+     print ("Sophomore")
+  else:
+     if year == 3:
+        print ("Junior")
+     else:
+        if year == 4:
+           print ("Senior")
+
+Enter year: 2
+Sophomore
+
+ on the outside you have an if statement. However, if you look in the true or false path statements, you'll once again see another if statement.
+ this is known as a multiway if statement. 
+_____________________________________
+
+elif is just a combination of the words else and if. So, our program above becomes this:
+
+year = eval(input("Enter year: "))
+if year == 1:
+   print ("Freshman")
+elif year == 2:
+   print ("Sophomore")
+elif year == 3:
+   print ("Junior")
+elif year == 4:
+   print ("Senior")
+
+the indenting here is much easier to read and doesn't take up so much room.
+ the functionality of the code is exactly the same as in the previous example.
+
+_______________________________________
+one last advantage of the nested if and elif statements that I want to point out. It's the ability to add a final else statement that will reveal invalid entries
+year = eval(input("Enter year: "))
+if year == 1:
+   print ("Freshman")
+elif year == 2:
+   print ("Sophomore")
+elif year == 3:
+   print ("Junior")
+elif year == 4:
+   print ("Senior")
+else:
+   print ("Not a valid year")
+
+Enter year: 5
+Not a valid year
+
+________________________________________
+LOGIC OPERATORS
+
+age = eval(input("How old are you? "))
+registered = input("Are you registered? (y/n) ")
+
+if age >= 18:
+    if registered == "y":
+         print ("You are ready to vote!")
+else:
+    print ("You are not ready to vote.")
+
+
+How old are you? 52
+Are you registered? (y/n) y
+You are ready to vote!
+
+the else clause that I've written is matched up with the first if. So if the user is over 18, then the true path runs, and we always skip the else.
+By the way, the reason the else matches up this way is the indenting. Because the else is lined up with the first if, Python associates the two with each other. 
+_________________________________________
+
+Of course, you could do something like this:
+
+age = eval(input("How old are you? "))
+registered = input("Are you registered? (y/n) ")
+
+if age >= 18:
+    if registered == "y":
+         print ("You are ready to vote!")
+    else:
+         print ("You are not ready to vote.")
+
+How old are you? 52
+Are you registered? (y/n) y
+You are ready to vote!
+
+This now gives the correct responses when users are over 18 and registered and when they're over 18 and not registered. But, if your user is under 18, then you don't get a response at all. 
+_________________________________________
+
+how to evaluate two conditions at once with compound conditions.
+
+age = eval(input("How old are you? "))
+registered = input("Are you registered? (y/n) ")
+
+if age >= 18 and registered == "y":
+    print ("You are ready to vote!")
+else:
+    print ("You are not ready to vote.")
+
+How old are you? 11
+Are you registered? (y/n) y
+You are not ready to vote.
+
+________________________________________
+
+rate = eval(input("What is your hourly wage? "))
+hours = eval(input("How many hours did you work? "))
+
+if hours < 40:
+    pay = hours * rate
+else:
+    pay = hours * rate
+    overtimeHours = hours - 40
+    overtimePay = overtimeHours * (rate * 0.5)
+    pay = pay + overtimePay
+
+print ("Your weekly pay is:", pay)
+
+What is your hourly wage? 42
+How many hours did you work? 40
+Your weekly pay is: 1680.0
+
+___________________________________________
+WHILE LOOP
+
+while < condition >:
+         < statements >
+
+____________________________________________
+ this code is going to continue to run over and over until the condition becomes false.
+Initially, the variable number is storing 1. When we get to the while statement the first time, 1 is compared to 5. Since 1 is less than or equal to 5, we enter the loop body.
+The program prints the value of the number variable, this time 1, and the increment number.
+Control then moves back up to the while statement and the condition is tested again. This time, the program compares 2 to 5.
+This process continues until number becomes 6. At that time, the condition becomes false because 6 is not less than or equal to 5.
+
+number = 1
+while number <= 5:
+         print (number)
+         number = number + 1
+print ("goodbye!")
+
+1
+2
+3
+4
+5
+goodbye!
+
+_____________________________________________
+
+There's one critical thing to note about while loops: you need to provide some way of making it possible for your condition to become false. 
+If you don't, you'll be stuck in an infinite loop.
+it'll always be 1 and the condition will always evaluate to true.
+
+number = 1
+while number <= 5:
+         print (number)
+
+
+______________________________________________
+
+maybe you want to print a number and then ask users if they want to see the next higher number. If they answer yes, you'll print the next number and ask them that same question again. If they say no, then you'll just stop the program.
+
+number = 1
+answer = 'y'
+while answer == 'y':
+         print (number)
+         number = number + 1
+         answer = input(
+                "Do you want the next number? ")
+
+1
+Do you want the next number? y
+2
+Do you want the next number? y
+3
+Do you want the next number? 
+
+When you're writing the code for this condition, you have no idea how many numbers your users will want to see. Instead, the users themselves are going to determine how many times the loop code runs.
+_______________________________________________
+THE FOR LOOP
+
+for < variable > in < sequence >:
+         < statements >
+
+_______________________________________________
+
+Python has a built-in function called range.
+To use the range function, you'll need two numbers: the starting value and the ending value
+range function works similar to slicing strings in other programs in that the last number that you provide will never be used. 
+
+range(1, 6)
+
+for number in range(1, 6):
+         print (number)
+
+1
+2
+3
+4
+
+_______________________________________________
+
+ Note that range will always start at 0 and go through one less than the value we pass it.
+
+for number in range(6):
+         print (number)
+
+0
+1
+2
+3
+4
+5
+
+______________________________________________
+
+ if you wanted to get a list of every other number between 1 and 10, you'd use the following range:
+
+number in range(1, 10, 2)
+ print (number)
+
+__________________________________________________
+
+num_of_nums = eval(input(
+         "How many numbers do you want to average? "))
+
+sum = 0.0
+for count in range (num_of_nums):
+         value = eval(input("Enter a value: "))
+         sum = sum + value
+
+average = sum / num_of_nums
+print ("The average is:", average)
+
+
+How many numbers do you want to average? 6
+Enter a value: 3
+Enter a value: 4
+Enter a value: 5
+Enter a value: 7
+Enter a value: 2
+Enter a value: 4
+The average is: 4.166666666666667
+______________________________________________________
+
+
+
+while answer == 'y' or 'Y':
+
+This statement will always evaluate to true because the second part of the compound statement, 'Y' evaluates to the Boolean value true. 
+
+_______________________________________________________
+BREAK
+By placing the word break inside your loop, you'll force the program to stop at that exact point and exit the loop. 
+
+for number in range(1, 11):
+         if number == 4:
+                   break
+         print (number)
+print ("Thanks!")
+
+
+1
+2
+3
+Thanks!
+
+_____________________________________________
+CONTINUE
+
+for number in range(1, 11):
+         if number == 4:
+                   continue
+         print (number)
+print ("Thanks!")
+
+1
+2
+3
+5
+6
+7
+8
+9
+10
+Thanks!
+
+This program will go through each number in the list from 1 to 10. Except this time, when number holds the value 4, the if condition becomes true. This means the continue statement runs, and we skip the remaining iteration of this loop, meaning we'll skip the print statement.
+________________________________________________
+
+ELSE
+
+for number in range(1, 11):
+         if number == 4:
+                   continue
+         print (number)
+else:
+         print ("Exited normally")
+
+Notice how this program doesn't have a break statement inside the loop. Therefore, when you run it, you'll see that final note 
+saying that the program exited normally
+_______________________________________________
+
+phrase = input("Enter a phrase: ")
+letter = input("Enter a letter: ")
+length = len(phrase)
+
+for index in range(0, length):
+         if phrase [index] == letter:
+                   break
+else:
+         print ("Your letter wasn't found")
+
+
+Enter a phrase: how now brown cow
+Enter a letter: h
+
+Process finished with exit code 0
+
+Now if the program finds the specified letter, we'll execute the break statement, leading for an exit that isn't normal. T
+______________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,334 @@
+lesson 3
+
+CH 2 IF statment
+
+to get the computer to do something if some condition is true,  sometimes called the one-way if statement. 
+ 
+if < condition > :      separates the condition from the statements to be performed
+   < true statements >  statements that you want executed if the condition is true, statements must be indented.
+< statements outside the if structure >    these statements will always be executed, whether the condition is true or not
+
+
+Boolean condition. This just means that the condition must evaluate to either true or false. 
+
+(:) at the end.  separates the condition from the statements to be performed if the condition is true. statements must be indented.
+
+
+Python allows you to indent using a tab or a few blank spaces. The choice is up to you
+
+in your true path with 5 spaces, then the remaining statements in your true path must also be indented by exactly 5 spaces.
+
+
+the six comparison or relational operators:
+< <= > >= == !=
+
+using numbers...
+age = 10
+if age == 10:
+    print ("ten")
+print ("how's that?")
+
+using strings....
+name = "me"
+if name == "me":
+    print ("the same")
+
+if there is more than one character, then Python just does the comparison like a dictionary. Python uses Unicode values for this.
+
+when comparing strings is that all of the capital letters come before any of the lowercase letters.
+
+letter = "C"
+if letter < "a":
+    print ("less than a")
+You'll find that the line less than a will print. Again, this is because the uppercase 'C' comes before the lowercase 'a' in Unicode.
+
+
+Chapter 3: 
+
+The else Clause
+
+ what happens if you want the computer to do one thing if the condition is true 
+and something different if the condition is false?
+
+else clause to our code and create a two-way if statement. 
+
+you can have an if without an else 
+but never an else without an if. 
+
+if < condition > :    we have a colon (:). this is to tell the computer that the next statements are to be done when the condition is false.
+   < true statements >
+else:
+   < false statements >
+< statements outside the if structure >
+
+Below is a simple if else statement for you to test. Try it out and let's examine it:
+
+if age >= 18:
+   print ("You are old enough to vote.")
+else:
+   print ("You are not old enough to vote.")
+
+you can have multiple lines of code in either your true or false path
+
+
+Nested if Statements
+
+ refers to the fact that you're putting one thing inside another.
+
+you have to be very careful to watch your indenting in this situation
+ Python uses the indenting to determine where the ifs and elses line up.
+
+year = eval(input("Enter year: "))
+if year == 1:
+  print ("Freshman")
+else:
+  if year == 2:
+     print ("Sophomore")
+  else:
+     if year == 3:
+        print ("Junior")
+     else:
+        if year == 4:
+           print ("Senior")
+
+Because there are multiple paths that the program can take, this is known as a multiway if statement.
+
+
+If you're using Tabs to indent, this can get a little worrisome because you'll quickly run out of space. For this reason, Python has given us the ability to use another keyword, elif.
+
+The elif Statement
+
+ indenting here is much easier to read and doesn't take up so much room.
+
+year = eval(input("Enter year: "))
+if year == 1:
+   print ("Freshman")
+elif year == 2:
+   print ("Sophomore")
+elif year == 3:
+   print ("Junior")
+elif year == 4:
+   print ("Senior")
+
+the ability to add a final else statement that will reveal invalid entries.
+
+notice that if my user enters a number other than 1, 2, 3, or 4, nothing is printed.
+
+So, if my user enters a 5 and nothing happens, the user or I might think there is a problem with the program, and I'd have to spend time figuring out what went wrong. But now I can add the following:
+
+
+year = eval(input("Enter year: "))
+if year == 1:
+   print ("Freshman")
+elif year == 2:
+   print ("Sophomore")
+elif year == 3:
+   print ("Junior")
+elif year == 4:
+   print ("Senior")
+else:
+   print ("Not a valid year")
+
+This is quite helpful for debugging your programs because if you leave out this final else statement, you might have invalid input and never know it 
+
+Chapter 4: Logic Operators
+
+
+A program that checks that users are at least 18 years old and registered to vote. To do this you could certainly just put one if statement inside another like this:
+
+age = eval(input("How old are you? "))
+registered = input("Are you registered? (y/n) ")
+
+if age >= 18:
+    if registered == "y":
+         print ("You are ready to vote!")
+else:
+    print ("You are not ready to vote.")
+
+ if you're old enough but not registered to vote. In this case, no message is printed on the screen.
+
+
+the reason the else matches up this way is the indenting. Because the else is lined up with the first if, 
+
+Of course, you could do something like this:
+This now gives the correct responses when users are over 18 and registered and when they're over 18 and not registered. But, if your user is under 18, then you don't get a response at all.
+
+
+age = eval(input("How old are you? "))
+registered = input("Are you registered? (y/n) ")
+
+if age >= 18:
+    if registered == "y":
+         print ("You are ready to vote!")
+    else:
+         print ("You are not ready to vote.")
+
+
+ if you could just put a second else statement in the program to fix this. Absolutely!
+
+compound conditions
+
+In order to create a compound condition, you need to use a logic operator. The most common operators in Python are And and Or. 
+
+Compound conditions with the And operator require that both individual conditions are true in order for the overall compound condition to be true.
+
+we'd want to use the And operator to require that the user be at least 18 and registered to vote
+
+age = eval(input("How old are you? "))
+registered = input("Are you registered? (y/n) ")
+
+if age >= 18 and registered == "y":
+    print ("You are ready to vote!")
+else:
+    print ("You are not ready to vote.")
+
+
+You'll find that the Or operator works exactly the same.
+keep in mind that this is a compound condition. 
+
+if choice == "Y" or choice == "y":
+
+
+
+create statment that will ask users for their hourly rate and the number of hours they've worked.
+calculate their weekly pay
+ testing to see if users have worked more than 40 hours 
+hourly rate for overtime is going to be time and a half or 1 1/2 times the regular hourly wage.
+
+rate = eval(input("What is your hourly wage? "))
+hours = eval(input("How many hours did you work? "))
+
+if hours < 40:
+    pay = hours * rate
+else:
+    pay = hours * rate
+    overtimeHours = hours - 40
+    overtimePay = overtimeHours * (rate * 0.5)
+    pay = pay + overtimePay
+
+print ("Your weekly pay is:", pay)
+
+
+I have a comma separating my literal string and my variable.
+This is going to allow me to put both of these pieces of output on the same line. You should note that by using that comma, Python is going to place a single blank space between the last letter of the literal string and the first character in your variable's value.
+
+
+next we'll take a look at having our programs repeat themselves with looping structures
+
+Python has given us a couple of different ways to put loops into our programs.
+
+__________________________________________________________________
+http://www.openbookproject.net/books/bpp4awd/ch04.html
+
+
+for code you haven’t written yet). In that case, you can use the pass statement, which does nothing except act as a placeholder.
+
+if True:          # This is always true
+    pass          # so this is always executed, but it does nothing
+else:
+    pass
+
+
+ There is no limit of the number of elif statements but only a single (and optional) final else statement is allowed and it must be the last branch in the statement:
+
+if choice == 'a':
+    print("You chose 'a'.")
+elif choice == 'b':
+    print("You chose 'b'.")
+elif choice == 'c':
+    print("You chose 'c'.")
+else:
+    print("Invalid choice.")
+
+
+nested conditionals very quickly become difficult to read. In general, it is a good idea to avoid them when you can.
+if x < y:
+    STATEMENTS_A
+else:
+    if x > y:
+        STATEMENTS_B
+    else:
+        STATEMENTS_C
+
+
+Logical operators often provide a way to simplify nested conditional statements. For example, we can rewrite the following code using a single conditional:
+
+if 0 < x:            # assume x is an int here
+    if x < 10:
+        print("x is a positive single digit.")
+
+
+iteration 
+Repeated execution of a set of statements is called iteration. Python has two statements for iteration – the for statement, and the while statement.
+
+
+Note too that an equality test is symmetric, but assignment is not. For example, if a == 7 then 7 == a. But in Python, the statement a = 7 is legal and 7 = a is not.
+
+Before you can update a variable, you have to initialize it, usually with a simple assignment:
+
+>>> x = 0
+>>> x = x + 1
+
+This second statement — updating a variable by adding 1 to it — is very common. It is called an increment of the variable; subtracting 1 is called a decrement.
+
+
+_______________________________
+
+lesson 3 quiz 100%
+
+Using the following variables:
+a = 1
+b = 2
+Which of the following statements will evaluate to false?
+Correct A
+if a == 1 and b == 1:
+
+
+Which of the following operators tests for inequality in Python?
+!=
+
+Which of the following statements about the syntax of the if structure is correct?
+Python allows you to have an if statement without an else clause.
+
+What term describes when a programmer places one if statement in the true path of another if statement?
+Nested ifs.
+
+Which of the following keywords makes a multiway if statement in Python?
+elif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+lesson 3 quiz 100%
+
+Using the following variables:
+a = 1
+b = 2
+Which of the following statements will evaluate to false?
+Correct A
+if a == 1 and b == 1:
+
+
+Which of the following operators tests for inequality in Python?
+!=
+
+Which of the following statements about the syntax of the if structure is correct?
+Python allows you to have an if statement without an else clause.
+
+What term describes when a programmer places one if statement in the true path of 
+another if statement?
+Nested ifs.
+
+Which of the following keywords makes a multiway if statement in Python?
+elif
+
+
+
+
+
